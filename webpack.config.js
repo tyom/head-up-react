@@ -1,3 +1,6 @@
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const colorFunction = require("postcss-color-function");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -12,7 +15,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: /src/,
-        loader: 'style!css?sourceMap'
+        loader: 'style!css?modules&localIdentName=[local]_[hash:base64:4]&sourceMap!postcss?sourceMap'
       },
       {
         test: /\.js$/,
@@ -25,6 +28,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/layout.html'
     })
+  ],
+  postcss: () => [
+    autoprefixer({
+      browsers: ['> 10%', 'last 2 versions']
+    }),
+    colorFunction,
+    precss
   ],
   devServer: {
     stats: {

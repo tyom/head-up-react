@@ -1,14 +1,20 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {GRID_SIZE} from '../constants';
-import {activateCell} from '../actions';
+import classNames from 'classnames';
+
+import {GRID_SIZE} from '../../constants';
+import {activateCell} from '../../actions';
+
+import styles from './styles.css';
 
 const CellComponent = ({title, size='1', isActive, onClick}) => {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
-    <div
-      className={`cell${isActive && ' is-active' || ''}`}
+    <article
+      className={classNames(styles.Cell, {
+        [styles['is-active']]: isActive
+      })}
       onClick={onClick}
       style={
         {
@@ -16,7 +22,9 @@ const CellComponent = ({title, size='1', isActive, onClick}) => {
           height: dimensions[1] || dimensions[0]
         }
       }
-    >{title} {isActive}</div>
+    >
+      <header className={styles['Cell-header']}>{title}</header>
+    </article>
   );
 };
 

@@ -1,9 +1,11 @@
 import React, {PropTypes} from 'react';
 
-import Cell from './cell';
+import Cell from '../cell';
+
+import {dashboard} from './styles.css';
 
 const Dashboard = () => (
-  <div id="dashboard">
+  <div className={dashboard}>
     <Cell title="Hello" size="1"/>
     <Cell title="World" size="1"/>
     <Cell title="Foo" size="2:1"/>

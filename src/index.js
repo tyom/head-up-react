@@ -19,5 +19,5 @@ render(
   <Provider store={store}>
     <Dashboard/>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('root')
 );

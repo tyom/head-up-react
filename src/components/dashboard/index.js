@@ -1,21 +1,18 @@
 import React, {PropTypes} from 'react';
+import kebabCase from 'lodash/kebabCase';
 
 import Cell from '../cell';
 
 import {dashboard} from './styles.css';
 
-const Dashboard = () => (
-  <div className={dashboard}>
-    <Cell title="Hello" size="1"/>
-    <Cell title="World" size="1"/>
-    <Cell title="Foo" size="2:1"/>
-    <Cell title="Lorem" size="2"/>
-    <Cell title="ipsum" size="2"/>
-    <Cell title="Gollum" size="4:1"/>
+const Dashboard = ({name, children}) => (
+  <div className={dashboard} id={kebabCase(name)}>
+    {children}
   </div>
 );
 
 Dashboard.PropTypes = {
+  displayName: 'Dashboard'
 };
 
 export default Dashboard;

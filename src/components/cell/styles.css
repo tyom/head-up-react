@@ -20,10 +20,11 @@
 
 .Cell-header {
   margin: -.5rem -.5rem .5rem;
-  padding: .2rem .5rem;
+  padding: .3rem .5rem;
   border-bottom: 1px solid color(#fff a(.1));
   text-transform: uppercase;
-  font-size: .8em;
+  font-size: .7em;
+  font-weight: 500;
 }
 
 /* States */
@@ -32,7 +33,7 @@
   opacity: 1;
 
   &::before {
-    box-shadow: 0 0 1px 2px color(#fff a(.1));
+    box-shadow: 0 0 0 2px color(#fff a(.1));
     border-color: color(#fff a(.5));
   }
 }

@@ -4,6 +4,10 @@ const dashboard = (state={}, action) => {
       return Object.assign({}, state, {
         activeCell: action.id
       });
+    case 'ACTIVATE_DASHBOARD':
+      return Object.assign({}, state, {
+        activeDashboard: action.id
+      });
     default:
       return state;
   }

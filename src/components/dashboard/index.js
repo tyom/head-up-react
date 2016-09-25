@@ -1,18 +1,50 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 import kebabCase from 'lodash/kebabCase';
+import classNames from 'classnames';
 
-import Cell from '../cell';
+import {activateDashboard} from '../../actions';
 
-import {dashboard} from './styles.css';
+import styles from './styles.css';
 
-const Dashboard = ({name, children}) => (
-  <div className={dashboard} id={kebabCase(name)}>
-    {children}
-  </div>
-);
+class Dashboard extends React.Component {
+  componentDidMount() {
+    if (!this.props.isActive) {return;}
+    // FIXME: Do away without setTimeout
+    const d = this._dashboard;
+    setTimeout(() => {
+      d.scrollIntoView();
+    }, 0);
+  }
 
-Dashboard.PropTypes = {
-  displayName: 'Dashboard'
+  componentDidUpdate() {
+    if (!this.props.isActive) {return;}
+    this._dashboard.scrollIntoView({behavior: 'smooth'});
+  }
+
+  render() {
+    const dashboardId = kebabCase(this.props.name);
+
+    return(
+      <div
+        id={dashboardId}
+        ref={(c) => this._dashboard = c}
+        className={classNames(styles.Dashboard, {
+          [styles['is-active']]: this.props.isActive
+        })}
+      >
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isActive: ownProps.name === state.dashboard.activeDashboard
+  }
 };
 
-export default Dashboard;
+const DashboardContainer = connect(mapStateToProps)(Dashboard);
+
+export default DashboardContainer;

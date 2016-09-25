@@ -1,7 +1,13 @@
-.dashboard {
+.Dashboard {
   height: 100vh;
   padding: 3px;
   display: flex;
   flex-flow: row wrap;
   overflow: auto;
+  transition: 200ms;
+}
+
+/* States */
+
+.Dashboard.is-active {
 }

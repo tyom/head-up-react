@@ -4,3 +4,10 @@ export const activateCell = (id) => {
     id
   }
 };
+
+export const activateDashboard = (id) => {
+  return {
+    type: 'ACTIVATE_DASHBOARD',
+    id
+  }
+};

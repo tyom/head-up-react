@@ -7,7 +7,7 @@ import {activateCell} from '../../actions';
 
 import styles from './styles.css';
 
-const CellComponent = ({title, size='1', isActive, onClick}) => {
+const Cell = ({title, size='1', isActive, onClick}) => {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
@@ -28,7 +28,7 @@ const CellComponent = ({title, size='1', isActive, onClick}) => {
   );
 };
 
-CellComponent.propTypes = {
+Cell.propTypes = {
   onClick: PropTypes.func,
   size: PropTypes.string,
   title: PropTypes.string,
@@ -49,6 +49,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const Cell = connect(mapStateToProps, mapDispatchToProps)(CellComponent);
+const CellContainer = connect(mapStateToProps, mapDispatchToProps)(Cell);
 
-export default Cell;
+export default CellContainer;

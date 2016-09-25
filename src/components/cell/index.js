@@ -16,12 +16,10 @@ const Cell = ({title, size='1', isActive, onClick}) => {
         [styles['is-active']]: isActive
       })}
       onClick={onClick}
-      style={
-        {
-          width: dimensions[0],
-          height: dimensions[1] || dimensions[0]
-        }
-      }
+      style={{
+        width: dimensions[0],
+        height: dimensions[1] || dimensions[0]
+      }}
     >
       <header className={styles['Cell-header']}>{title}</header>
     </article>
@@ -38,15 +36,15 @@ Cell.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     isActive: ownProps.title === state.dashboard.activeCell
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-      dispatch(activateCell(ownProps.title))
+      dispatch(activateCell(ownProps.title));
     }
-  }
+  };
 };
 
 const CellContainer = connect(mapStateToProps, mapDispatchToProps)(Cell);

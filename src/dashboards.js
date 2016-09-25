@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 import Menu from './components/menu';
 
@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     const menuItems = this.props.children.map(dashboard => dashboard.props.name);
 
-    return(
+    return (
       <div className="AppContainer">
         <Menu items={menuItems}/>
         <div className="Dashboards">
@@ -16,5 +16,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.element.isRequired
+};
 
 export default App;

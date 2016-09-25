@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
-import {activateDashboard} from '../../actions';
-
 import styles from './styles.css';
 
 class Dashboard extends React.Component {
@@ -25,7 +23,7 @@ class Dashboard extends React.Component {
   render() {
     const dashboardId = kebabCase(this.props.name);
 
-    return(
+    return (
       <div
         id={dashboardId}
         ref={(c) => this._dashboard = c}
@@ -39,10 +37,16 @@ class Dashboard extends React.Component {
   }
 }
 
+Dashboard.propTypes = {
+  name: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  isActive: PropTypes.bool
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
     isActive: ownProps.name === state.dashboard.activeDashboard
-  }
+  };
 };
 
 const DashboardContainer = connect(mapStateToProps)(Dashboard);

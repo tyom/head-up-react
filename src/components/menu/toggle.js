@@ -14,4 +14,9 @@ const Toggle = ({onClick, isMenuClosed}) => (
   </button>
 );
 
+Toggle.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  isMenuClosed: PropTypes.bool
+};
+
 export default Toggle;

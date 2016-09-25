@@ -44,7 +44,7 @@ const mapStateToProps = state => {
   return {
     activeDashboard: state.dashboard.activeDashboard,
     isMenuClosed: state.dashboard.isMenuClosed
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
     onMenuItemClick: name => {
       dispatch(activateDashboard(name));
     }
-  }
+  };
 };
 
 const menuContainer = connect(mapStateToProps, mapDispatchToProps)(Menu);

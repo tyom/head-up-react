@@ -90,4 +90,5 @@
   border-color: color(#fff a(.5));
   background-color: color(#fff a(.04));
   opacity: 1;
+  transform: scale(1.03);
 }

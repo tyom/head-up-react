@@ -1,6 +1,8 @@
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const colorFunction = require("postcss-color-function");
+const postcssHidden = require("postcss-hidden");
+const postcssSize = require("postcss-size");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -34,6 +36,8 @@ module.exports = {
       browsers: ['> 10%', 'last 2 versions']
     }),
     colorFunction,
+    postcssHidden,
+    postcssSize,
     precss
   ],
   devServer: {

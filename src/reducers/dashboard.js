@@ -2,7 +2,7 @@ const dashboard = (state={}, action) => {
   switch (action.type) {
     case 'ACTIVATE_CELL':
       return Object.assign({}, state, {
-        activeCell: action.id
+        activeCell: state.activeCell !== action.id ? action.id : null
       });
     case 'ACTIVATE_DASHBOARD':
       return Object.assign({}, state, {

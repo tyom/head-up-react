@@ -4,12 +4,19 @@ import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
 import {activateDashboard} from '../../actions';
+import {toggleMenu} from '../../actions';
 
+import Toggle from './toggle';
 import styles from './styles.css';
 
-const Menu = ({items, activeDashboard, onMenuItemClick}) => (
-  <nav className={styles.Menu}>
-    <ul>
+const Menu = ({items, isMenuClosed=false, activeDashboard, onMenuItemClick, onToggleClick}) => (
+  <nav
+    className={classNames(styles.Menu, {
+      [styles['is-hidden']]: isMenuClosed
+    })}
+  >
+    <Toggle onClick={onToggleClick} isMenuClosed={isMenuClosed}/>
+    <ul className={styles['Menu-list']}>
       {items.map(item =>
         <li
           key={kebabCase(item)}
@@ -27,20 +34,26 @@ const Menu = ({items, activeDashboard, onMenuItemClick}) => (
 
 Menu.propTypes = {
   items: PropTypes.array,
+  isMenuClosed: PropTypes.bool,
   onMenuItemClick: PropTypes.func,
+  onToggleClick: PropTypes.func,
   activeDashboard: PropTypes.string
 };
 
 const mapStateToProps = state => {
   return {
-    activeDashboard: state.dashboard.activeDashboard
+    activeDashboard: state.dashboard.activeDashboard,
+    isMenuClosed: state.dashboard.isMenuClosed
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onToggleClick: () => {
+      dispatch(toggleMenu());
+    },
     onMenuItemClick: name => {
-      dispatch(activateDashboard(name))
+      dispatch(activateDashboard(name));
     }
   }
 };

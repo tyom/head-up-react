@@ -1,14 +1,15 @@
 .Menu {
   width: 180px;
-  padding: 1rem;
-  transition: 120ms;
+  padding: 1rem 1rem 1rem 2.5rem;
+  transition: 200ms;
   background-color: color(#000 a(.4));
+}
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.Menu-list {
+  list-style: none;
+  transition: 160ms;
+  padding: 0;
+  margin: 0;
 }
 
 .Menu-item {
@@ -31,12 +32,62 @@
   }
 }
 
+.Menu-toggle {
+  border-width: 0 1px 0 0;
+  border-right: 1px solid color(#fff a(.2));
+  color: #fff;
+  background: none;
+  position: fixed;
+  z-index: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 1.5rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  outline: none;
+  transition: 200ms background-color;
+
+  &:active {
+    transition: none;
+    background-color: #142a59;
+  }
+
+  > span {
+    display: hidden;
+  }
+}
+
+.Menu-toggleIcon {
+  size: 1.3rem;
+  opacity: .7;
+  display: block;
+  transition: 200ms;
+}
+
+.Menu-toggle:focus,
+.Menu-toggle:hover {
+  .Menu-toggleIcon {
+    size: 1.8rem;
+    margin-left: -0.3rem;
+  }
+}
+
 /* States */
+
+.Menu.is-hidden {
+  margin-left: calc(-180px + 1.5rem);
+
+  .Menu-list {
+    opacity: 0;
+  }
+  .Menu-toggle {
+    border-color: transparent;
+  }
+}
 
 .Menu-item.is-active {
   border-color: color(#fff a(.5));
   background-color: color(#fff a(.04));
   opacity: 1;
-  margin-left: -.2rem;
-  margin-right: -.2rem;
 }

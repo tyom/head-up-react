@@ -8,6 +8,10 @@ const dashboard = (state={}, action) => {
       return Object.assign({}, state, {
         activeDashboard: action.id
       });
+    case 'TOGGLE_MENU':
+      return Object.assign({}, state, {
+        isMenuClosed: !state.isMenuClosed
+      });
     default:
       return state;
   }

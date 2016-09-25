@@ -11,3 +11,9 @@ export const activateDashboard = (id) => {
     id
   }
 };
+
+export const toggleMenu = () => {
+  return {
+    type: 'TOGGLE_MENU'
+  }
+};

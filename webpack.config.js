@@ -20,9 +20,16 @@ module.exports = {
         loader: 'style!css?modules&localIdentName=[local]_[hash:base64:4]&sourceMap!postcss?sourceMap'
       },
       {
-        test: /\.js$/,
-        include: /src/,
+        test: /\.jsx?$/,
+        include: [
+          /node_modules\/react-icons/,
+          /src/
+        ],
         loader: 'babel'
+      },
+      {
+        test: /\.(otf|eot|png|svg|ttf|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url?limit=8192'
       }
     ]
   },

@@ -1,15 +1,17 @@
 import React, {PropTypes} from 'react';
 
-import Menu from './components/menu';
+import Menu from '../menu';
 
-class App extends React.Component {
+import styles from './styles.css';
+
+class Dashboards extends React.Component {
   render() {
     const menuItems = this.props.children.map(dashboard => dashboard.props.name);
 
     return (
-      <div className="AppContainer">
+      <div className={styles.Dashboards}>
         <Menu items={menuItems}/>
-        <div className="Dashboards">
+        <div className={styles['Dashboards-collection']}>
           {this.props.children}
         </div>
       </div>
@@ -17,8 +19,8 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  children: PropTypes.element.isRequired
+Dashboards.propTypes = {
+  children: PropTypes.array.isRequired
 };
 
-export default App;
+export default Dashboards;

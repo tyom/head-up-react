@@ -12,13 +12,3 @@ html {
 body {
   margin: 0;
 }
-
-:global .AppContainer {
-  display: flex;
-}
-
-:global .Dashboards {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}

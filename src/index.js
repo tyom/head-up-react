@@ -7,7 +7,7 @@ import persistState from 'redux-localstorage';
 require('smoothscroll-polyfill').polyfill();
 
 import reducers from './reducers';
-import Dashboards from './dashboards';
+import Dashboards from './components/dashboards';
 import Dashboard from './components/dashboard';
 import Cell from './components/cell';
 

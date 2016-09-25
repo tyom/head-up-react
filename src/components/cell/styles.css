@@ -24,6 +24,39 @@
   text-transform: uppercase;
   font-size: .7em;
   font-weight: 500;
+  position: relative;
+}
+
+.Cell-menuBtn {
+  background: none;
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  padding: 0;
+  width: 2rem;
+  outline: none;
+  opacity: 0;
+  transition: 200ms opacity;
+
+  &:hover,
+  &:focus {
+    .Cell-menuIcon {
+      opacity: 1;
+    }
+  }
+
+  > span {
+    display: hidden;
+  }
+}
+
+.Cell-menuIcon {
+  size: 100%;
+  padding-top: .1rem;
+  opacity: .4;
 }
 
 /* States */
@@ -34,5 +67,9 @@
 
   &::before {
     border-color: color(#fff a(.5));
+  }
+
+  .Cell-menuBtn {
+    opacity: 1;
   }
 }

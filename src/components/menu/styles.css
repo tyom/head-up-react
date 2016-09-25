@@ -13,7 +13,7 @@
 }
 
 .Menu-item {
-  height: 100px;
+  height: 10vh;
   border: 1px solid color(#fff a(.2));
   background-color: color(#fff a(.02));
   align-self: center;

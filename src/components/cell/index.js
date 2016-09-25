@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 import {GRID_SIZE} from '../../constants';
 import {activateCell} from '../../actions';
@@ -21,7 +22,13 @@ const Cell = ({title, size='1', isActive, onClick}) => {
         height: dimensions[1] || dimensions[0]
       }}
     >
-      <header className={styles['Cell-header']}>{title}</header>
+      <header className={styles['Cell-header']}>
+        {title}
+        <button className={styles['Cell-menuBtn']}>
+          <FaEllipsisH className={styles['Cell-menuIcon']}/>
+          <span>Menu</span>
+        </button>
+      </header>
     </article>
   );
 };
@@ -41,7 +48,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
+    onClick: evt => {
+      const isButton = !!evt.target.closest(`.${styles['Cell-menuBtn']}`);
+      if (isButton) {return;}
       dispatch(activateCell(ownProps.title));
     }
   };

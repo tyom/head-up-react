@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
   isActive: PropTypes.bool
 };
 

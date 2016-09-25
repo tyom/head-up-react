@@ -12,7 +12,7 @@
     left: 0;
     margin: .3rem;
     position: absolute;
-    transition: 1s;
+    transition: 700ms;
     border: 1px solid color(#fff a(.2));
   }
 }
@@ -33,5 +33,6 @@
 
   &::before {
     border-color: color(#fff a(.5));
+    margin: .2rem;
   }
 }

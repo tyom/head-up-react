@@ -9,6 +9,7 @@ import {activateCellSettings} from '../../actions';
 
 import styles from './styles.css';
 
+
 const Content = () => (
   <div className={styles['Cell-content']}>
     <h4>Content</h4>
@@ -21,7 +22,7 @@ const Settings = () => (
   </aside>
 );
 
-const Cell = ({title, size='1', isActive, isConfiguring, onClick, onSettingsClick}) => {
+function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick}) {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
@@ -54,7 +55,7 @@ const Cell = ({title, size='1', isActive, isConfiguring, onClick, onSettingsClic
       </article>
     </div>
   );
-};
+}
 
 Cell.propTypes = {
   onClick: PropTypes.func,
@@ -65,26 +66,20 @@ Cell.propTypes = {
   isConfiguring: PropTypes.bool
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isActive: ownProps.title === state.dashboard.activeCell,
-    isConfiguring: ownProps.title === state.dashboard.activeCellSettings
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  isActive: ownProps.title === state.dashboardReducer.activeCell,
+  isConfiguring: ownProps.title === state.dashboardReducer.activeCellSettings
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onClick: evt => {
+    onClick: (evt) => {
       const isButton = !!evt.target.closest(`.${styles['Cell-menuBtn']}`);
       if (isButton) {return;}
       dispatch(activateCell(ownProps.title));
     },
-    onSettingsClick: title => {
-      dispatch(activateCellSettings(title));
-    }
+    onSettingsClick: (title) => dispatch(activateCellSettings(title))
   };
-};
+}
 
-const CellContainer = connect(mapStateToProps, mapDispatchToProps)(Cell);
-
-export default CellContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Cell);

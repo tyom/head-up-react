@@ -1,11 +1,14 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 
 import Menu from '../menu';
 
 import styles from './styles.css';
 
+
 class Dashboards extends React.Component {
   render() {
+    if (!this.props.children) {return;}
     const menuItems = this.props.children.map(dashboard => dashboard.props.name);
 
     return (
@@ -23,4 +26,8 @@ Dashboards.propTypes = {
   children: PropTypes.array.isRequired
 };
 
-export default Dashboards;
+const mapStateToProps = (state, ownProps) => ({
+  cells: ownProps.children
+});
+
+export default connect(mapStateToProps)(Dashboards);

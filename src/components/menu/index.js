@@ -9,55 +9,52 @@ import {toggleMenu} from '../../actions';
 import Toggle from './toggle';
 import styles from './styles.css';
 
-const Menu = ({items, isMenuClosed=false, activeDashboard, onMenuItemClick, onToggleClick}) => (
-  <nav
-    className={classNames(styles.Menu, {
-      [styles['is-hidden']]: isMenuClosed
-    })}
-  >
-    <Toggle onClick={onToggleClick} isMenuClosed={isMenuClosed}/>
-    <ul className={styles['Menu-list']}>
-      {items.map(item =>
-        <li
-          key={kebabCase(item)}
-          className={classNames(styles['Menu-item'], {
-            [styles['is-active']]: item === activeDashboard
-          })}
-          onClick={() => onMenuItemClick(item)}
-        >
-          {item}
-        </li>
-      )}
-    </ul>
-  </nav>
-);
+
+function Menu({items=[], isMenuClosed=false, activeDashboard=items[0], onMenuItemClick, onToggleClick}) {
+  if (!items.length) {return;}
+
+  return (
+    <nav
+      className={classNames(styles.Menu, {
+        [styles['is-hidden']]: isMenuClosed
+      })}
+    >
+      <Toggle onClick={onToggleClick} isMenuClosed={isMenuClosed}/>
+      <ul className={styles['Menu-list']}>
+        {items.map(item =>
+          <li
+            key={kebabCase(item)}
+            className={classNames(styles['Menu-item'], {
+              [styles['is-active']]: item === activeDashboard
+            })}
+            onClick={() => onMenuItemClick(item)}
+          >
+            {item}
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+}
 
 Menu.propTypes = {
   items: PropTypes.array,
-  isMenuClosed: PropTypes.bool,
   onMenuItemClick: PropTypes.func,
   onToggleClick: PropTypes.func,
-  activeDashboard: PropTypes.string
+  activeDashboard: PropTypes.string,
+  isMenuClosed: PropTypes.bool
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => ({
+  activeDashboard: state.dashboardReducer.activeDashboard,
+  isMenuClosed: state.dashboardReducer.isMenuClosed
+});
+
+function mapDispatchToProps(dispatch) {
   return {
-    activeDashboard: state.dashboard.activeDashboard,
-    isMenuClosed: state.dashboard.isMenuClosed
+    onToggleClick: () => dispatch(toggleMenu()),
+    onMenuItemClick: name => dispatch(activateDashboard(name))
   };
-};
+}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onToggleClick: () => {
-      dispatch(toggleMenu());
-    },
-    onMenuItemClick: name => {
-      dispatch(activateDashboard(name));
-    }
-  };
-};
-
-const menuContainer = connect(mapStateToProps, mapDispatchToProps)(Menu);
-
-export default menuContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

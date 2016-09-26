@@ -4,6 +4,7 @@ import FaAngleLeft from 'react-icons/lib/fa/angle-left';
 
 import styles from './styles.css';
 
+
 const Toggle = ({onClick, isMenuClosed}) => (
   <button className={styles['Menu-toggle']} onClick={onClick} type="button">
     {isMenuClosed

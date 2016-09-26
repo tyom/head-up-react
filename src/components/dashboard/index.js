@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import styles from './styles.css';
 
+
 class Dashboard extends React.Component {
   componentDidMount() {
     if (!this.props.isActive) {return;}
@@ -43,12 +44,8 @@ Dashboard.propTypes = {
   isActive: PropTypes.bool
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isActive: ownProps.name === state.dashboard.activeDashboard
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  isActive: ownProps.name === state.dashboardReducer.activeDashboard
+});
 
-const DashboardContainer = connect(mapStateToProps)(Dashboard);
-
-export default DashboardContainer;
+export default connect(mapStateToProps)(Dashboard);

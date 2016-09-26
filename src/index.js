@@ -6,18 +6,22 @@ import persistState from 'redux-localstorage';
 
 require('smoothscroll-polyfill').polyfill();
 
-import reducers from './reducers';
+import createReducer from './reducers';
 import Dashboards from './components/dashboards';
 import Dashboard from './components/dashboard';
 import Cell from './components/cell';
 
 import './index.css';
 
-const enhancer = compose(
-  persistState()
-);
 
-const store = createStore(reducers, enhancer);
+const devtools = window.devToolsExtension || (() => noop => noop);
+
+const enhancers = [
+  persistState(),
+  devtools()
+];
+
+const store = createStore(createReducer(), compose(...enhancers));
 
 render(
   <Provider store={store}>

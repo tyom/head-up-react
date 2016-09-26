@@ -1,26 +1,20 @@
-export const activateCell = (id) => {
-  return {
-    type: 'ACTIVATE_CELL',
-    id
-  };
-};
+export const ACTIVATE_CELL = 'ACTIVATE_CELL';
+export const ACTIVATE_CELL_SETTINGS = 'ACTIVATE_CELL_SETTINGS';
+export const ACTIVATE_DASHBOARD = 'ACTIVATE_DASHBOARD';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
 
-export const activateCellSettings = (id) => {
-  return {
-    type: 'ACTIVATE_CELL_SETTINGS',
-    id
-  };
-};
+export function activateCell(id) {
+  return {id, type: ACTIVATE_CELL};
+}
 
-export const activateDashboard = (id) => {
-  return {
-    type: 'ACTIVATE_DASHBOARD',
-    id
-  };
-};
+export function activateCellSettings(id) {
+  return {id, type: ACTIVATE_CELL_SETTINGS};
+}
 
-export const toggleMenu = () => {
-  return {
-    type: 'TOGGLE_MENU'
-  };
-};
+export function activateDashboard(id) {
+  return {id, type: ACTIVATE_DASHBOARD};
+}
+
+export function toggleMenu() {
+  return {type: TOGGLE_MENU};
+}

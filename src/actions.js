@@ -5,6 +5,13 @@ export const activateCell = (id) => {
   };
 };
 
+export const activateCellSettings = (id) => {
+  return {
+    type: 'ACTIVATE_CELL_SETTINGS',
+    id
+  };
+};
+
 export const activateDashboard = (id) => {
   return {
     type: 'ACTIVATE_DASHBOARD',

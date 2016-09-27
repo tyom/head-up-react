@@ -1,0 +1,259 @@
+.Menu_18v1 {
+  width: 180px;
+  padding: 1rem 1rem 1rem 2.5rem;
+  transition: 200ms;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.Menu-list_XIws {
+  list-style: none;
+  transition: 160ms;
+  padding: 0;
+  margin: 0;
+}
+
+.Menu-item_2gQd {
+  height: 10vh;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.02);
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: .5rem;
+  cursor: pointer;
+  opacity: .7;
+  transition: .6s
+}
+
+.Menu-item_2gQd:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.Menu-item_2gQd:hover {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.Menu-toggle_vy-X {
+  border-width: 0 1px 0 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background: none;
+  position: fixed;
+  z-index: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 1.5rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  outline: none;
+  transition: 200ms background-color;
+}
+
+.Menu-toggle_vy-X > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.Menu-toggle_vy-X > span.focusable_1Csp:active, .Menu-toggle_vy-X > span.focusable_1Csp:focus {
+  display: table;
+  position: static;
+  clear: both;
+}
+
+.Menu-toggle_vy-X:active {
+  transition: none;
+  background-color: #142a59;
+}
+
+.Menu-toggleIcon_1WFX {
+  width: 1.3rem;
+  height: 1.3rem;
+  opacity: .7;
+  display: block;
+  transition: 200ms;
+}
+
+.Menu-toggle_vy-X:focus .Menu-toggleIcon_1WFX, .Menu-toggle_vy-X:hover .Menu-toggleIcon_1WFX {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-left: -0.3rem;
+}
+
+/* States */
+
+.Menu_18v1.is-hidden_6zwW {
+  margin-left: calc(-180px + 1.5rem);
+}
+
+.Menu_18v1.is-hidden_6zwW .Menu-list_XIws {
+  opacity: 0;
+}
+
+.Menu_18v1.is-hidden_6zwW .Menu-toggle_vy-X {
+  border-color: transparent;
+}
+
+.Menu-item_2gQd.is-active_IjaS {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.04);
+  opacity: 1;
+  transform: scale(1.03);
+}
+.Dashboards_3vr8 {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Dashboards-collection_cKu4 {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.Dashboard_3x-S {
+  height: 100vh;
+  padding: 3px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  overflow: auto;
+  transition: 200ms;
+}
+
+/* States */
+
+.Dashboard_3x-S.is-active_30cm {
+}
+.Cell_qrRK {
+  position: relative;
+  opacity: .7;
+  transition: .6s;
+}
+
+.Cell-header_34qI {
+  padding: 0 .5rem;
+  line-height: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  font-size: .7em;
+  font-weight: 500;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.Cell-menuBtn_3Ask {
+  background: none;
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  padding: 0;
+  width: 2rem;
+  outline: none;
+  opacity: 0;
+  transition: 200ms opacity;
+}
+
+.Cell-menuBtn_3Ask > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.Cell-menuBtn_3Ask > span.focusable_OyjT:active, .Cell-menuBtn_3Ask > span.focusable_OyjT:focus {
+  display: table;
+  position: static;
+  clear: both;
+}
+
+.Cell-menuBtn_3Ask:hover .Cell-menuIcon_2sOi {
+  opacity: 1;
+}
+
+.Cell-menuBtn_3Ask:focus .Cell-menuIcon_2sOi {
+  opacity: 1;
+  stroke: #000;
+  stroke-width: 2;
+}
+
+.Cell-menuIcon_2sOi {
+  width: 100%;
+  height: 100%;
+  opacity: .4;
+}
+
+
+.Cell-container__y4C {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 4px;
+  padding-top: calc(1.5rem + 1px);
+  transition: 700ms;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.Cell-inner_23m2 {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.Cell-settings_9ZKF, .Cell-content_xmuW {
+  transition: .2s;
+  padding: .5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.Cell-settings_9ZKF h4, .Cell-content_xmuW h4 {
+  margin: 0;
+}
+
+.Cell-content_xmuW {
+}
+
+.Cell-settings_9ZKF {
+  background-color: #142a59;
+}
+
+/* States */
+
+.Cell_qrRK.is-active_2tY8 {
+  opacity: 1;
+  transform: scale(1.01);
+  z-index: 1;
+}
+
+.Cell_qrRK.is-active_2tY8 .Cell-container__y4C {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.Cell_qrRK.is-active_2tY8 .Cell-menuBtn_3Ask {
+  opacity: 1;
+}
+
+.Cell_qrRK.is-configuring_38_J .Cell-settings_9ZKF, .Cell_qrRK.is-configuring_38_J .Cell-content_xmuW {
+  transform: translateY(-100%);
+}
+
+/*# sourceMappingURL=styles.css.map*/

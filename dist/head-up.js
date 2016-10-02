@@ -49,11 +49,11 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Menu = exports.Cell = exports.Dashboard = exports.Dashboards = undefined;
+	exports.Menu = exports.Cell = exports.Dashboard = exports.HeadUp = undefined;
 	
-	var _dashboards = __webpack_require__(1);
+	var _headUp = __webpack_require__(1);
 	
-	var _dashboards2 = _interopRequireDefault(_dashboards);
+	var _headUp2 = _interopRequireDefault(_headUp);
 	
 	var _dashboard = __webpack_require__(87);
 	
@@ -71,7 +71,7 @@
 	
 	__webpack_require__(95).polyfill();
 	
-	exports.Dashboards = _dashboards2.default;
+	exports.HeadUp = _headUp2.default;
 	exports.Dashboard = _dashboard2.default;
 	exports.Cell = _cell2.default;
 	exports.Menu = _menu2.default;
@@ -110,16 +110,16 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Dashboards = function (_React$Component) {
-	  _inherits(Dashboards, _React$Component);
+	var HeadUp = function (_React$Component) {
+	  _inherits(HeadUp, _React$Component);
 	
-	  function Dashboards() {
-	    _classCallCheck(this, Dashboards);
+	  function HeadUp() {
+	    _classCallCheck(this, HeadUp);
 	
-	    return _possibleConstructorReturn(this, (Dashboards.__proto__ || Object.getPrototypeOf(Dashboards)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (HeadUp.__proto__ || Object.getPrototypeOf(HeadUp)).apply(this, arguments));
 	  }
 	
-	  _createClass(Dashboards, [{
+	  _createClass(HeadUp, [{
 	    key: 'render',
 	    value: function render() {
 	      if (!this.props.children) {
@@ -131,21 +131,21 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: _styles2.default.Dashboards },
+	        { className: _styles2.default.HeadUp },
 	        _react2.default.createElement(_menu2.default, { items: menuItems }),
 	        _react2.default.createElement(
 	          'div',
-	          { className: _styles2.default['Dashboards-collection'] },
+	          { className: _styles2.default['HeadUp-collection'] },
 	          this.props.children
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return Dashboards;
+	  return HeadUp;
 	}(_react2.default.Component);
 	
-	Dashboards.propTypes = {
+	HeadUp.propTypes = {
 	  children: _react.PropTypes.array.isRequired
 	};
 	
@@ -155,7 +155,7 @@
 	  };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Dashboards);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(HeadUp);
 
 /***/ },
 /* 2 */
@@ -6904,7 +6904,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"Dashboards":"Dashboards_3vr8","Dashboards-collection":"Dashboards-collection_cKu4"};
+	module.exports = {"HeadUp":"HeadUp_1xOa","HeadUp-collection":"HeadUp-collection_3-VM"};
 
 /***/ },
 /* 86 */,

@@ -1,8 +1,8 @@
-.Dashboards {
+.HeadUp {
   display: flex;
 }
 
-.Dashboards-collection {
+.HeadUp-collection {
   width: 100%;
   height: 100vh;
   overflow: hidden;

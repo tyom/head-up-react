@@ -7,12 +7,12 @@ import persistState from 'redux-localstorage';
 import createReducer from '../src/reducers';
 
 import {
-  Dashboards,
+  HeadUp,
   Dashboard,
   Cell
-} from '../lib';
+} from '../src';
 
-import './../dist/styles.css';
+// import './../dist/styles.css';
 import './index.css';
 
 
@@ -27,7 +27,7 @@ const store = createStore(createReducer(), compose(...enhancers));
 
 render(
   <Provider store={store}>
-    <Dashboards>
+    <HeadUp>
       <Dashboard name="first">
         <Cell title="Hello" size="1"/>
         <Cell title="World" size="1"/>
@@ -44,7 +44,7 @@ render(
         <Cell title="Maximum effort" size="2:1"/>
         <Cell title="Strongest link" size="2:1"/>
       </Dashboard>
-    </Dashboards>
+    </HeadUp>
   </Provider>,
   document.getElementById('root')
 );

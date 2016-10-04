@@ -1,19 +1,31 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-import Menu from '../menu';
-
+import Menu from '../../components/menu';
+import {activateDashboard} from '../../actions';
+import {toggleMenu} from '../../actions';
 import styles from './styles.css';
 
 
 class HeadUp extends React.Component {
-  render() {
-    if (!this.props.children) {return;}
+  renderMenu() {
     const menuItems = this.props.children.map(dashboard => dashboard.props.name);
+    if (!menuItems.length) {return null;}
+    return (
+      <Menu
+        items={menuItems}
+        activeDashboard={this.props.activeDashboard}
+        isMenuClosed={this.props.isMenuClosed}
+        onToggleMenu={this.props.onToggleMenu}
+        onSelectMenuItem={this.props.onSelectMenuItem}
+      />
+    );
+  }
 
+  render() {
     return (
       <div className={styles.HeadUp}>
-        <Menu items={menuItems}/>
+        {this.renderMenu()}
         <div className={styles['HeadUp-collection']}>
           {this.props.children}
         </div>
@@ -23,11 +35,22 @@ class HeadUp extends React.Component {
 }
 
 HeadUp.propTypes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.array.isRequired,
+  activeDashboard: PropTypes.string,
+  isMenuClosed: PropTypes.bool,
+  onToggleMenu: PropTypes.func,
+  onSelectMenuItem: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  cells: ownProps.children
+  cells: ownProps.children,
+  activeDashboard: state.dashboardReducer.activeDashboard,
+  isMenuClosed: state.dashboardReducer.isMenuClosed
 });
 
-export default connect(mapStateToProps)(HeadUp);
+const mapDispatchToProps = (dispatch) => ({
+  onToggleMenu: () => dispatch(toggleMenu()),
+  onSelectMenuItem: name => dispatch(activateDashboard(name))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeadUp);

@@ -37,7 +37,7 @@
   border-right: 1px solid color(#fff a(.1));
   color: #fff;
   background: none;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   cursor: pointer;
   padding: 0;

@@ -44,8 +44,8 @@ HeadUp.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
   cells: ownProps.children,
-  activeDashboard: state.dashboardReducer.activeDashboard,
-  isMenuClosed: state.dashboardReducer.isMenuClosed
+  activeDashboard: state.headup.activeDashboard,
+  isMenuClosed: state.headup.isMenuClosed
 });
 
 const mapDispatchToProps = (dispatch) => ({

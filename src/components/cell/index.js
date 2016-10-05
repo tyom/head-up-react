@@ -67,8 +67,8 @@ Cell.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  isActive: ownProps.title === state.dashboardReducer.activeCell,
-  isConfiguring: ownProps.title === state.dashboardReducer.activeCellSettings
+  isActive: ownProps.title === state.headup.activeCell,
+  isConfiguring: ownProps.title === state.headup.activeCellSettings
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

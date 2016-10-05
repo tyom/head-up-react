@@ -45,7 +45,7 @@ Dashboard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  isActive: ownProps.name === state.dashboardReducer.activeDashboard
+  isActive: ownProps.name === state.headup.activeDashboard
 });
 
 export default connect(mapStateToProps)(Dashboard);

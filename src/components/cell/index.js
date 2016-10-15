@@ -10,9 +10,9 @@ import {activateCellSettings} from '../../actions';
 import styles from './styles.css';
 
 
-const Content = () => (
+const Content = ({children}) => (
   <div className={styles['Cell-content']}>
-    <h4>Content</h4>
+    {children}
   </div>
 );
 
@@ -22,7 +22,7 @@ const Settings = () => (
   </aside>
 );
 
-function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick}) {
+function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick, children}) {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
@@ -49,7 +49,7 @@ function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClic
           }
         </header>
         <div className={styles['Cell-inner']}>
-          <Content>Content</Content>
+          <Content>{children}</Content>
           <Settings/>
         </div>
       </article>
@@ -63,7 +63,8 @@ Cell.propTypes = {
   size: PropTypes.string,
   title: PropTypes.string,
   isActive: PropTypes.bool,
-  isConfiguring: PropTypes.bool
+  isConfiguring: PropTypes.bool,
+  children: PropTypes.element
 };
 
 const mapStateToProps = (state, ownProps) => ({

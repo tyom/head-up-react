@@ -1,19 +1,57 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
+import mousetrap from 'mousetrap';
 
 import Menu from '../../components/menu';
 import {activateDashboard} from '../../actions';
 import {toggleMenu} from '../../actions';
+
 import styles from './styles.css';
 
 
-class HeadUp extends React.Component {
-  renderMenu() {
+class HeadUp extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {menuItems: []};
+  }
+
+  componentDidMount() {
     const menuItems = this.props.children.map(dashboard => dashboard.props.name);
-    if (!menuItems.length) {return null;}
+    const getCurrentDashboardIndex = () => menuItems.indexOf(this.props.activeDashboard);
+
+    this.setState({menuItems});
+
+    mousetrap
+      .bind('m', this.props.onToggleMenu)
+      .bind(['j', 'ctrl+up'], () => this.getPrevDashboardName(getCurrentDashboardIndex()))
+      .bind(['k', 'ctrl+down'], () => this.getNextDashboardName(getCurrentDashboardIndex()))
+    ;
+  }
+
+  componentWillUnmount() {
+    mousetrap
+      .unbind('m')
+      .unbind(['j', 'ctrl+up'])
+      .unbind(['k', 'ctrl+down'])
+    ;
+  }
+
+  getPrevDashboardName(currentIndex) {
+    const prevIndex = (currentIndex - 1) < 0 ? this.state.menuItems.length - 1 : currentIndex - 1;
+    this.props.onPrevDashboard(this.state.menuItems[prevIndex]);
+  }
+
+  getNextDashboardName(currentIndex) {
+    const nextIndex = (currentIndex + 1) > this.state.menuItems.length - 1 ? 0 : currentIndex + 1;
+    this.props.onNextDashboard(this.state.menuItems[nextIndex]);
+  }
+
+  renderMenu() {
+    if (!this.state.menuItems.length) {return null;}
     return (
       <Menu
-        items={menuItems}
+        items={this.state.menuItems}
         activeDashboard={this.props.activeDashboard}
         isMenuClosed={this.props.isMenuClosed}
         onToggleMenu={this.props.onToggleMenu}
@@ -39,7 +77,9 @@ HeadUp.propTypes = {
   activeDashboard: PropTypes.string,
   isMenuClosed: PropTypes.bool,
   onToggleMenu: PropTypes.func,
-  onSelectMenuItem: PropTypes.func
+  onSelectMenuItem: PropTypes.func,
+  onPrevDashboard: PropTypes.func,
+  onNextDashboard: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -50,7 +90,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onToggleMenu: () => dispatch(toggleMenu()),
-  onSelectMenuItem: name => dispatch(activateDashboard(name))
+  onSelectMenuItem: name => dispatch(activateDashboard(name)),
+  onPrevDashboard: name => dispatch(activateDashboard(name)),
+  onNextDashboard: name => dispatch(activateDashboard(name))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadUp);

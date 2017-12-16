@@ -41,10 +41,10 @@ render(
         <Cell title="World" size="1"/>
         <Cell title="Foo" size="2:1"/>
         <Cell title="3 day forecast" size="2">
-          <CityForecast postcode="W1"/>
+          <CityForecast postcode="London"/>
         </Cell>
         <Cell title="Current weather" size="2">
-          <CityTemp postcode="W1"/>
+          <CityTemp postcode="London"/>
         </Cell>
         <Cell title="Gollum" size="4:1"/>
       </Dashboard>

@@ -18,7 +18,7 @@ class CityTemp extends Component {
   getData(postcode) {
     if (!postcode) {return;}
 
-    fetch(`${ENDPOINT}/weather?zip=${postcode},uk&units=metric&APPID=${API_KEY}`).then(res => {
+    fetch(`${ENDPOINT}/weather?q=${postcode},uk&units=metric&APPID=${API_KEY}`).then(res => {
       res.json().then(json => this.setState({data: json}));
     });
   }

@@ -1,6 +1,6 @@
-import uniq from 'lodash/uniq';
-import React, {Component, PropTypes} from 'react';
-import {VictoryChart, VictoryAxis, VictoryLine, VictoryStack} from 'victory';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {VictoryChart, VictoryAxis, VictoryLine} from 'victory';
 import {API_KEY, ENDPOINT} from '../constants';
 
 import * as s from './widgets.css';

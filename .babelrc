@@ -1,20 +1,5 @@
 {
   "presets": [
-    "env",
-    "stage-2",
-    "react"
-  ],
-  "env": {
-    "HEAD_UP": {
-      "plugins": [
-        [
-          "babel-plugin-webpack-loaders",
-          {
-            "config": "./webpack.config.base.js",
-            "verbose": false
-          }
-        ]
-      ]
-    }
-  }
+    ["poi", { "jsx": "react"}]
+  ]
 }

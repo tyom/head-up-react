@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaAngleLeft from 'react-icons/lib/fa/angle-left';
 

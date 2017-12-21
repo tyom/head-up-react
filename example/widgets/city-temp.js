@@ -27,7 +27,6 @@ class CityTemp extends Component {
   render() {
     const data = this.state.data;
     if (!data) {return null;}
-    console.log(data);
     return (
 
       <div className={s.CityTemp}>

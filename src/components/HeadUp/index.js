@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import mousetrap from 'mousetrap';
+import flatten from 'lodash/flatten';
 
-import Menu from '../../components/Menu';
+import Menu from '../Menu';
+import Dashboard from '../Dashboard';
 
 import styles from './styles.css';
 
@@ -10,14 +12,18 @@ export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {menuItems: []};
+    this.state = {
+      menuItems: [],
+      dashboards: [],
+    };
   }
 
   componentDidMount() {
-    const menuItems = this.props.children.map(dashboard => dashboard.props.name);
+    const dashboards = this.props.dashboards || flatten([this.props.children]);
+    const menuItems = dashboards.map(dashboard => dashboard.name || dashboard.props.name);
     const getCurrentDashboardIndex = () => menuItems.indexOf(this.props.activeDashboard);
 
-    this.setState({menuItems});
+    this.setState({menuItems, dashboards});
 
     mousetrap
       .bind('m', this.props.onToggleMenu)
@@ -45,7 +51,7 @@ export default class HeadUp extends Component {
   }
 
   renderMenu() {
-    if (!this.state.menuItems.length) {return null;}
+    if (this.state.menuItems.length < 2) {return null;}
     return (
       <Menu
         items={this.state.menuItems}
@@ -70,7 +76,11 @@ export default class HeadUp extends Component {
 }
 
 HeadUp.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+  dashboards: PropTypes.array,
   activeDashboard: PropTypes.string,
   isMenuClosed: PropTypes.bool,
   onToggleMenu: PropTypes.func,

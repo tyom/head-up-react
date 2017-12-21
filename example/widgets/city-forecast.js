@@ -29,8 +29,6 @@ class CityForecast extends Component {
     const data = this.state.data;
     if (!data) {return null;}
 
-    console.log(data);
-
     const temps = data.list.map(item => {
       return {
         x: new Date(item.dt * 1000),

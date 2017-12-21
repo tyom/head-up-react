@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import mousetrap from 'mousetrap';
 
-import Menu from '../../components/menu';
-import {activateDashboard} from '../../actions';
-import {toggleMenu} from '../../actions';
+import Menu from '../../components/Menu';
 
 import styles from './styles.css';
 
-
-class HeadUp extends Component {
+export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
@@ -83,17 +79,3 @@ HeadUp.propTypes = {
   onNextDashboard: PropTypes.func
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  cells: ownProps.children,
-  activeDashboard: state.headup.activeDashboard,
-  isMenuClosed: state.headup.isMenuClosed
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onToggleMenu: () => dispatch(toggleMenu()),
-  onSelectMenuItem: name => dispatch(activateDashboard(name)),
-  onPrevDashboard: name => dispatch(activateDashboard(name)),
-  onNextDashboard: name => dispatch(activateDashboard(name))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeadUp);

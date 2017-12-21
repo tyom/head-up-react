@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import classNames from 'classnames';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 import {GRID_SIZE} from '../../constants';
-import {activateCell} from '../../actions';
-import {activateCellSettings} from '../../actions';
-
 import styles from './styles.css';
-
 
 const Content = ({children}) => (
   <div className={styles['Cell-content']}>
@@ -23,7 +18,7 @@ const Settings = () => (
   </aside>
 );
 
-function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick, children}) {
+export default function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick, children}) {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
@@ -68,20 +63,3 @@ Cell.propTypes = {
   children: PropTypes.element
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  isActive: ownProps.title === state.headup.activeCell,
-  isConfiguring: ownProps.title === state.headup.activeCellSettings
-});
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    onClick: (evt) => {
-      const isButton = !!evt.target.closest(`.${styles['Cell-menuBtn']}`);
-      if (isButton) {return;}
-      dispatch(activateCell(ownProps.title));
-    },
-    onSettingsClick: (title) => dispatch(activateCellSettings(title))
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cell);

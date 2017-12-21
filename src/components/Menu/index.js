@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
-import Toggle from './toggle';
+import Toggle from './Toggle';
 import styles from './styles.css';
 
-
-function Menu({items=[], isMenuClosed=false, activeDashboard=items[0], onSelectMenuItem, onToggleMenu}) {
+export default function Menu({items=[], isMenuClosed=false, activeDashboard=items[0], onSelectMenuItem, onToggleMenu}) {
   if (!items.length) {return;}
 
   return (
@@ -44,5 +43,3 @@ Menu.propTypes = {
   activeDashboard: PropTypes.string,
   isMenuClosed: PropTypes.bool
 };
-
-export default Menu;

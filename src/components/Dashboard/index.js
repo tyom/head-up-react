@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
 import styles from './styles.css';
 
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
   componentDidMount() {
     if (!this.props.isActive) {return;}
     // FIXME: Do away without setTimeout
@@ -44,9 +43,3 @@ Dashboard.propTypes = {
   children: PropTypes.array.isRequired,
   isActive: PropTypes.bool
 };
-
-const mapStateToProps = (state, ownProps) => ({
-  isActive: ownProps.name === state.headup.activeDashboard
-});
-
-export default connect(mapStateToProps)(Dashboard);

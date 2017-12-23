@@ -6,8 +6,8 @@ import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import {GRID_SIZE} from '../../constants';
 import styles from './styles.css';
 
-const Content = ({children}) => (
-  <div className={styles['Cell-content']}>
+const Content = ({children, className}) => (
+  <div className={classNames(className, styles['Cell-content'])}>
     {children}
   </div>
 );
@@ -18,7 +18,7 @@ const Settings = () => (
   </aside>
 );
 
-export default function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick, children}) {
+export default function Cell({title, size='1', isActive, isConfiguring, onClick, onSettingsClick, children, innerClassName}) {
   const dimensions = size.split(/:|\//).map(d => `${d/GRID_SIZE*100}%`);
 
   return (
@@ -45,7 +45,7 @@ export default function Cell({title, size='1', isActive, isConfiguring, onClick,
           }
         </header>
         <div className={styles['Cell-inner']}>
-          <Content>{children}</Content>
+          <Content className={innerClassName}>{children}</Content>
           <Settings/>
         </div>
       </article>
@@ -56,10 +56,11 @@ export default function Cell({title, size='1', isActive, isConfiguring, onClick,
 Cell.propTypes = {
   onClick: PropTypes.func,
   onSettingsClick: PropTypes.func,
+  innerClassName: PropTypes.string,
   size: PropTypes.string,
   title: PropTypes.string,
   isActive: PropTypes.bool,
   isConfiguring: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.node
 };
 

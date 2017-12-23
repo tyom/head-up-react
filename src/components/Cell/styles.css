@@ -9,8 +9,8 @@
   line-height: 1.5rem;
   border-bottom: 1px solid color(#fff a(.1));
   text-transform: uppercase;
-  font-size: .7em;
-  font-weight: 500;
+  font-size: .8em;
+  font-weight: 600;
   position: absolute 0 0 null 0;
   z-index: 1;
 }
@@ -29,14 +29,9 @@
   opacity: 0;
   transition: 200ms opacity;
 
-  &:hover .Cell-menuIcon {
-    opacity: 1;
-  }
-
+  &:hover .Cell-menuIcon,
   &:focus .Cell-menuIcon {
     opacity: 1;
-    stroke: #000;
-    stroke-width: 2;
   }
 
   > span {
@@ -86,11 +81,10 @@
 
 .Cell.is-active {
   opacity: 1;
-  transform: scale(1.01);
-  z-index: 1;
 
   .Cell-container {
     border-color: color(#fff a(.5));
+    box-shadow: 0 0 1px 1px color(#fff a(.1));
   }
 
   .Cell-menuBtn {

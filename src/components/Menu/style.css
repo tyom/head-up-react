@@ -1,18 +1,18 @@
-.Menu {
+.menu {
   width: 180px;
   padding: 1rem 1rem 1rem 2.5rem;
   transition: ease-in-out 160ms;
   background-color: color(#000 a(.4));
 }
 
-.Menu-list {
+.list {
   list-style: none;
   transition: 160ms;
   padding: 0;
   margin: 0;
 }
 
-.Menu-item {
+.list > li {
   height: 10vh;
   border: 1px solid color(#fff a(.2));
   background-color: color(#fff a(.02));
@@ -20,7 +20,7 @@
   padding: .5rem;
   cursor: pointer;
   opacity: .7;
-  transition: .6s;
+  transition: .2s;
 
   &:not(:first-child) {
     margin-top: 1rem;
@@ -28,11 +28,12 @@
 
   &:hover {
     border: 1px solid color(#fff a(.2));
-    background-color: color(#fff a(.04));
+    background-color: color(#fff a(.05));
+    box-shadow: 0 0 0 2px #17306e;
   }
 }
 
-.Menu-toggle {
+.toggle {
   border-width: 0 1px 0 0;
   border-right: 1px solid color(#fff a(.1));
   color: #fff;
@@ -58,16 +59,16 @@
   }
 }
 
-.Menu-toggleIcon {
+.toggleIcon {
   size: 1.3rem;
   opacity: .7;
   display: block;
   transition: 200ms;
 }
 
-.Menu-toggle:focus,
-.Menu-toggle:hover {
-  .Menu-toggleIcon {
+.toggle:focus,
+.toggle:hover {
+  .toggleIcon {
     size: 1.8rem;
     margin-left: -0.3rem;
   }
@@ -75,20 +76,19 @@
 
 /* States */
 
-.Menu.is-hidden {
+.menu.is-hidden {
   margin-left: calc(-180px + 1.5rem);
 
-  .Menu-list {
+  .list {
     opacity: 0;
   }
-  .Menu-toggle {
+  .toggle {
     border-color: transparent;
   }
 }
 
-.Menu-item.is-active {
-  border-color: color(#fff a(.5));
-  background-color: color(#fff a(.04));
+.list li.is-active {
+  border-color: #fff;
   opacity: 1;
-  transform: scale(1.03);
+  box-shadow: none;
 }

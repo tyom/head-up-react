@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
 import Toggle from './Toggle';
-import styles from './styles.css';
+import './style.css';
 
 export default function Menu({
   items = [],
@@ -18,24 +18,20 @@ export default function Menu({
   }
 
   return (
-    <nav
-      className={classNames(styles.Menu, {
-        [styles['is-hidden']]: isMenuClosed,
-      })}
-    >
+    <nav styleName={classNames('menu', { 'is-hidden': isMenuClosed })}>
       {onToggleMenu ? (
         <Toggle onClick={onToggleMenu} isMenuClosed={isMenuClosed} />
       ) : null}
-      <ul className={styles['Menu-list']}>
+      <ul styleName="list">
         {items.map(item => (
           <li
             key={kebabCase(item)}
-            className={classNames(styles['Menu-item'], {
-              [styles['is-active']]: item === activeDashboard,
+            styleName={classNames({
+              'is-active': item === activeDashboard,
             })}
             onClick={() => onSelectMenuItem(item)}
           >
-            {item}
+            <span>{item}</span>
           </li>
         ))}
       </ul>

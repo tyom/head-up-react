@@ -4,17 +4,17 @@ export const ACTIVATE_DASHBOARD = 'ACTIVATE_DASHBOARD';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 
 export function activateCell(id) {
-  return {id, type: ACTIVATE_CELL};
+  return { id, type: ACTIVATE_CELL };
 }
 
 export function activateCellSettings(id) {
-  return {id, type: ACTIVATE_CELL_SETTINGS};
+  return { id, type: ACTIVATE_CELL_SETTINGS };
 }
 
 export function activateDashboard(id) {
-  return {id, type: ACTIVATE_DASHBOARD};
+  return { id, type: ACTIVATE_DASHBOARD };
 }
 
 export function toggleMenu() {
-  return {type: TOGGLE_MENU};
+  return { type: TOGGLE_MENU };
 }

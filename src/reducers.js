@@ -1,33 +1,34 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import {
   ACTIVATE_CELL,
   ACTIVATE_CELL_SETTINGS,
   ACTIVATE_DASHBOARD,
-  TOGGLE_MENU
+  TOGGLE_MENU,
 } from './actions';
 
-function HeadUpReducer(headupState={}, action) {
+function HeadUpReducer(headupState = {}, action) {
   switch (action.type) {
     case ACTIVATE_CELL:
       return {
         ...headupState,
-        activeCell: (headupState.activeCell !== action.id) ? action.id : null
+        activeCell: headupState.activeCell !== action.id ? action.id : null,
       };
     case ACTIVATE_CELL_SETTINGS:
       return {
         ...headupState,
-        activeCellSettings: (headupState.activeCellSettings !== action.id) ? action.id : null
+        activeCellSettings:
+          headupState.activeCellSettings !== action.id ? action.id : null,
       };
     case ACTIVATE_DASHBOARD:
       return {
         ...headupState,
-        activeDashboard: action.id
+        activeDashboard: action.id,
       };
     case TOGGLE_MENU:
       return {
         ...headupState,
-        isMenuClosed: !headupState.isMenuClosed
+        isMenuClosed: !headupState.isMenuClosed,
       };
     default:
       return headupState;
@@ -36,6 +37,6 @@ function HeadUpReducer(headupState={}, action) {
 
 export default function createReducer() {
   return combineReducers({
-    headup: HeadUpReducer
+    headup: HeadUpReducer,
   });
 }

@@ -5,10 +5,11 @@ import classNames from 'classnames';
 
 import styles from './styles.css';
 
-
 export default class Dashboard extends React.Component {
   componentDidMount() {
-    if (!this.props.isActive) {return;}
+    if (!this.props.isActive) {
+      return;
+    }
     // FIXME: Do away without setTimeout
     const d = this._dashboard;
     setTimeout(() => {
@@ -17,8 +18,10 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.isActive) {return;}
-    this._dashboard.scrollIntoView({behavior: 'smooth'});
+    if (!this.props.isActive) {
+      return;
+    }
+    this._dashboard.scrollIntoView({ behavior: 'smooth' });
   }
 
   render() {
@@ -27,9 +30,9 @@ export default class Dashboard extends React.Component {
     return (
       <div
         id={dashboardId}
-        ref={(c) => this._dashboard = c}
+        ref={c => (this._dashboard = c)}
         className={classNames(styles.Dashboard, {
-          [styles['is-active']]: this.props.isActive
+          [styles['is-active']]: this.props.isActive,
         })}
       >
         {this.props.children}
@@ -41,5 +44,5 @@ export default class Dashboard extends React.Component {
 Dashboard.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.array.isRequired,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
 };

@@ -1,4 +1,4 @@
 module.exports = {
   cssModules: true,
-  presets: [require('poi-preset-react')()]
+  presets: [require('poi-preset-react')()],
 };

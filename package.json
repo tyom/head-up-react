@@ -25,6 +25,7 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-eslint": "8.2.1",
+    "babel-plugin-react-css-modules": "3.3.3",
     "babel-preset-poi": "1.1.2",
     "del-cli": "1.1.0",
     "eslint": "^3.6.0",

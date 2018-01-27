@@ -17,7 +17,7 @@ import {
   Dashboards,
   Dashboard,
   Cell
-} from 'head-up';
+} from Headup;
 
-import 'head-up/dist/styles.css';
+import Headup;
 ```

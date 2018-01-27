@@ -1,7 +1,11 @@
 {
   "name": "head-up",
   "version": "0.1.0",
-  "description": "",
+  "description": "Build dashboards effortlessly",
+  "repository": {
+    "url": "tyom/head-up",
+    "type": "git"
+  },
   "main": "src/index.js",
   "dependencies": {
     "classnames": "^2.2.5",

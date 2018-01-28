@@ -4,18 +4,42 @@ import classNames from 'classnames';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 import { GRID_SIZE } from '../../constants';
-import styles from './styles.css';
+import './style.css';
 
 const Content = ({ children, className }) => (
-  <div className={classNames(className, styles['Cell-content'])}>
+  <div styleName="content" className={className}>
     {children}
   </div>
 );
 
 const Settings = () => (
-  <aside className={styles['Cell-settings']}>
+  <aside styleName="settings">
     <h4>Settings</h4>
   </aside>
+);
+
+const CellContainer = ({
+  title,
+  isActive,
+  onSettingsClick,
+  innerClassName,
+  children,
+}) => (
+  <article styleName="container">
+    <header styleName="header">
+      {title}
+      {isActive ? (
+        <button styleName="menuBtn" onClick={() => onSettingsClick(title)}>
+          <FaEllipsisH styleName="menuIcon" />
+          <span>Menu</span>
+        </button>
+      ) : null}
+    </header>
+    <div styleName="inner">
+      <Content className={innerClassName}>{children}</Content>
+      <Settings />
+    </div>
+  </article>
 );
 
 const Cell = ({
@@ -27,39 +51,32 @@ const Cell = ({
   onSettingsClick,
   children,
   innerClassName,
+  className,
 }) => {
   const dimensions = size.split(/:|\//).map(d => `${d / GRID_SIZE * 100}%`);
 
   return (
     <div
-      className={classNames(styles.Cell, {
-        [styles['is-active']]: isActive,
-        [styles['is-configuring']]: isConfiguring,
+      styleName={classNames('cell', {
+        'is-active': isActive,
+        'is-configuring': isConfiguring,
       })}
+      className={className}
       onClick={onClick}
       style={{
         width: dimensions[0],
         height: dimensions[1] || dimensions[0],
       }}
     >
-      <article className={styles['Cell-container']}>
-        <header className={styles['Cell-header']}>
-          {title}
-          {isActive ? (
-            <button
-              className={styles['Cell-menuBtn']}
-              onClick={() => onSettingsClick(title)}
-            >
-              <FaEllipsisH className={styles['Cell-menuIcon']} />
-              <span>Menu</span>
-            </button>
-          ) : null}
-        </header>
-        <div className={styles['Cell-inner']}>
-          <Content className={innerClassName}>{children}</Content>
-          <Settings />
-        </div>
-      </article>
+      {title || children ? (
+        <CellContainer
+          title={title}
+          isActive={isActive}
+          onSettingsClick={onSettingsClick}
+          innerClassName={innerClassName}
+          children={children}
+        />
+      ) : null}
     </div>
   );
 };
@@ -67,6 +84,14 @@ const Cell = ({
 Content.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+};
+
+CellContainer.propTypes = {
+  title: PropTypes.string,
+  isActive: PropTypes.bool,
+  onSettingsClick: PropTypes.func,
+  innerClassName: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Cell.propTypes = {
@@ -78,6 +103,7 @@ Cell.propTypes = {
   isActive: PropTypes.bool,
   isConfiguring: PropTypes.bool,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Cell;

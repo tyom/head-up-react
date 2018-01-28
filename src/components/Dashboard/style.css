@@ -1,4 +1,4 @@
-.Dashboard {
+.dashboard {
   height: 100vh;
   padding: 3px;
   display: flex;
@@ -9,5 +9,4 @@
 
 /* States */
 
-.Dashboard.is-active {
-}
+.is-active {}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 
-import styles from './styles.css';
+import './style.css';
 
 export default class Dashboard extends React.Component {
   componentDidMount() {
@@ -31,8 +31,8 @@ export default class Dashboard extends React.Component {
       <div
         id={dashboardId}
         ref={c => (this._dashboard = c)}
-        className={classNames(styles.Dashboard, {
-          [styles['is-active']]: this.props.isActive,
+        styleName={classNames('dashboard', {
+          'is-active': this.props.isActive,
         })}
       >
         {this.props.children}
@@ -41,8 +41,12 @@ export default class Dashboard extends React.Component {
   }
 }
 
+Dashboard.defaultProps = {
+  isActive: false,
+};
+
 Dashboard.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.array,
   isActive: PropTypes.bool,
 };

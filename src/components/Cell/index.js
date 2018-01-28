@@ -18,6 +18,30 @@ const Settings = () => (
   </aside>
 );
 
+const CellContainer = ({
+  title,
+  isActive,
+  onSettingsClick,
+  innerClassName,
+  children,
+}) => (
+  <article styleName="container">
+    <header styleName="header">
+      {title}
+      {isActive ? (
+        <button styleName="menuBtn" onClick={() => onSettingsClick(title)}>
+          <FaEllipsisH styleName="menuIcon" />
+          <span>Menu</span>
+        </button>
+      ) : null}
+    </header>
+    <div styleName="inner">
+      <Content className={innerClassName}>{children}</Content>
+      <Settings />
+    </div>
+  </article>
+);
+
 const Cell = ({
   title,
   size = '1',
@@ -27,6 +51,7 @@ const Cell = ({
   onSettingsClick,
   children,
   innerClassName,
+  className,
 }) => {
   const dimensions = size.split(/:|\//).map(d => `${d / GRID_SIZE * 100}%`);
 
@@ -36,27 +61,22 @@ const Cell = ({
         'is-active': isActive,
         'is-configuring': isConfiguring,
       })}
+      className={className}
       onClick={onClick}
       style={{
         width: dimensions[0],
         height: dimensions[1] || dimensions[0],
       }}
     >
-      <article styleName="container">
-        <header styleName="header">
-          {title}
-          {isActive ? (
-            <button styleName="menuBtn" onClick={() => onSettingsClick(title)}>
-              <FaEllipsisH styleName="menuIcon" />
-              <span>Menu</span>
-            </button>
-          ) : null}
-        </header>
-        <div styleName="inner">
-          <Content className={innerClassName}>{children}</Content>
-          <Settings />
-        </div>
-      </article>
+      {title || children ? (
+        <CellContainer
+          title={title}
+          isActive={isActive}
+          onSettingsClick={onSettingsClick}
+          innerClassName={innerClassName}
+          children={children}
+        />
+      ) : null}
     </div>
   );
 };
@@ -64,6 +84,14 @@ const Cell = ({
 Content.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+};
+
+CellContainer.propTypes = {
+  title: PropTypes.string,
+  isActive: PropTypes.bool,
+  onSettingsClick: PropTypes.func,
+  innerClassName: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Cell.propTypes = {
@@ -75,6 +103,7 @@ Cell.propTypes = {
   isActive: PropTypes.bool,
   isConfiguring: PropTypes.bool,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Cell;

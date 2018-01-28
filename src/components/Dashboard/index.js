@@ -47,6 +47,6 @@ Dashboard.defaultProps = {
 
 Dashboard.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.array,
   isActive: PropTypes.bool,
 };

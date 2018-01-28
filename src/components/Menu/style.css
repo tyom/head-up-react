@@ -12,15 +12,17 @@
   margin: 0;
 }
 
-.list > li {
+.list-item {
   height: 10vh;
   border: 1px solid color(#fff a(.2));
   background-color: color(#fff a(.02));
   align-self: center;
-  padding: .5rem;
+  padding: 1px;
   cursor: pointer;
   opacity: .7;
   transition: .2s;
+  display: flex;
+  flex-flow: row wrap;
 
   &:not(:first-child) {
     margin-top: 1rem;
@@ -30,6 +32,16 @@
     border: 1px solid color(#fff a(.2));
     background-color: color(#fff a(.05));
     box-shadow: 0 0 0 2px #17306e;
+  }
+}
+
+.list-item-cell {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute 1px 1px 1px 1px;
+    background: color(#fff a(.08));
   }
 }
 

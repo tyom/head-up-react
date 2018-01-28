@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import mousetrap from 'mousetrap';
 import flatten from 'lodash/flatten';
+import pick from 'lodash/pick';
 
 import Menu from '../Menu';
 import Dashboard from '../Dashboard';
@@ -20,22 +21,17 @@ export default class HeadUp extends Component {
 
   componentDidMount() {
     const dashboards = this.props.dashboards || flatten([this.props.children]);
-    const menuItems = dashboards.map(
-      dashboard => dashboard.name || dashboard.props.name
-    );
-    const getCurrentDashboardIndex = () =>
-      menuItems.indexOf(this.props.activeDashboard);
+    const menuItems = dashboards.map(({ props }) => ({
+      name: props.name,
+      cells: props.children.map(({ props }) => pick(props, ['size'])),
+    }));
 
     this.setState({ menuItems, dashboards });
 
     mousetrap
       .bind('h', this.props.onToggleMenu)
-      .bind(['j', 'ctrl+up'], () =>
-        this.getPrevDashboardName(getCurrentDashboardIndex())
-      )
-      .bind(['k', 'ctrl+down'], () =>
-        this.getNextDashboardName(getCurrentDashboardIndex())
-      );
+      .bind(['j', 'ctrl+up'], this.getPrevDashboardName.bind(this))
+      .bind(['k', 'ctrl+down'], this.getNextDashboardName.bind(this));
   }
 
   componentWillUnmount() {
@@ -45,16 +41,24 @@ export default class HeadUp extends Component {
       .unbind(['k', 'ctrl+down']);
   }
 
-  getPrevDashboardName(currentIndex) {
-    const prevIndex =
-      currentIndex - 1 < 0 ? this.state.menuItems.length - 1 : currentIndex - 1;
-    this.props.onPrevDashboard(this.state.menuItems[prevIndex]);
+  getCurrentIndex() {
+    return this.state.menuItems
+      .map(x => x.name)
+      .indexOf(this.props.activeDashboard);
   }
 
-  getNextDashboardName(currentIndex) {
+  getPrevDashboardName() {
+    const currentIndex = this.getCurrentIndex();
+    const prevIndex =
+      currentIndex - 1 < 0 ? this.state.menuItems.length - 1 : currentIndex - 1;
+    this.props.onPrevDashboard(this.state.menuItems[prevIndex].name);
+  }
+
+  getNextDashboardName() {
+    const currentIndex = this.getCurrentIndex();
     const nextIndex =
       currentIndex + 1 > this.state.menuItems.length - 1 ? 0 : currentIndex + 1;
-    this.props.onNextDashboard(this.state.menuItems[nextIndex]);
+    this.props.onNextDashboard(this.state.menuItems[nextIndex].name);
   }
 
   renderMenu() {

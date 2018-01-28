@@ -3,7 +3,7 @@ import { activateCell } from '../actions';
 import { activateCellSettings } from '../actions';
 
 import Cell from '../components/Cell';
-import styles from '../components/Cell/styles.css';
+import styles from '../components/Cell/style.css';
 
 const mapStateToProps = (state, ownProps) => ({
   isActive: ownProps.title === state.headup.activeCell,
@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     onClick: evt => {
-      const isButton = !!evt.target.closest(`.${styles['Cell-menuBtn']}`);
+      const isButton = !!evt.target.closest(`.${styles['menuBtn']}`);
       if (isButton) {
         return;
       }

@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 import { GRID_SIZE } from '../../constants';
-import styles from './styles.css';
+import './style.css';
 
 const Content = ({ children, className }) => (
-  <div className={classNames(className, styles['Cell-content'])}>
+  <div styleName="content" className={className}>
     {children}
   </div>
 );
 
 const Settings = () => (
-  <aside className={styles['Cell-settings']}>
+  <aside styleName="settings">
     <h4>Settings</h4>
   </aside>
 );
@@ -32,9 +32,9 @@ const Cell = ({
 
   return (
     <div
-      className={classNames(styles.Cell, {
-        [styles['is-active']]: isActive,
-        [styles['is-configuring']]: isConfiguring,
+      styleName={classNames('cell', {
+        'is-active': isActive,
+        'is-configuring': isConfiguring,
       })}
       onClick={onClick}
       style={{
@@ -42,20 +42,17 @@ const Cell = ({
         height: dimensions[1] || dimensions[0],
       }}
     >
-      <article className={styles['Cell-container']}>
-        <header className={styles['Cell-header']}>
+      <article styleName="container">
+        <header styleName="header">
           {title}
           {isActive ? (
-            <button
-              className={styles['Cell-menuBtn']}
-              onClick={() => onSettingsClick(title)}
-            >
-              <FaEllipsisH className={styles['Cell-menuIcon']} />
+            <button styleName="menuBtn" onClick={() => onSettingsClick(title)}>
+              <FaEllipsisH styleName="menuIcon" />
               <span>Menu</span>
             </button>
           ) : null}
         </header>
-        <div className={styles['Cell-inner']}>
+        <div styleName="inner">
           <Content className={innerClassName}>{children}</Content>
           <Settings />
         </div>

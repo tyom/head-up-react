@@ -1,10 +1,10 @@
-.Cell {
+.cell {
   position: relative;
   opacity: .7;
   transition: .6s;
 }
 
-.Cell-header {
+.header {
   padding: 0 .5rem;
   line-height: 1.5rem;
   border-bottom: 1px solid color(#fff a(.1));
@@ -15,7 +15,7 @@
   z-index: 1;
 }
 
-.Cell-menuBtn {
+.menuBtn {
   background: none;
   border: 0;
   position: absolute;
@@ -29,8 +29,8 @@
   opacity: 0;
   transition: 200ms opacity;
 
-  &:hover .Cell-menuIcon,
-  &:focus .Cell-menuIcon {
+  &:hover .menuIcon,
+  &:focus .menuIcon {
     opacity: 1;
   }
 
@@ -39,13 +39,13 @@
   }
 }
 
-.Cell-menuIcon {
+.menuIcon {
   size: 100%;
   opacity: .4;
 }
 
 
-.Cell-container {
+.container {
   position: absolute 0;
   margin: 4px;
   padding-top: calc(1.5rem + 1px);
@@ -53,14 +53,14 @@
   border: 1px solid color(#fff a(.2));
 }
 
-.Cell-inner {
+.inner {
   overflow: hidden;
   position: relative;
   height: 100%;
 }
 
-.Cell-settings,
-.Cell-content {
+.settings,
+.content {
   transition: .2s;
   padding: .5rem;
   size: 100%;
@@ -70,31 +70,31 @@
   }
 }
 
-.Cell-content {
+.content {
 }
 
-.Cell-settings {
+.settings {
   background-color: #142a59;
 }
 
 /* States */
 
-.Cell.is-active {
+.cell.is-active {
   opacity: 1;
 
-  .Cell-container {
+  .container {
     border-color: color(#fff a(.5));
     box-shadow: 0 0 1px 1px color(#fff a(.1));
   }
 
-  .Cell-menuBtn {
+  .menuBtn {
     opacity: 1;
   }
 }
 
-.Cell.is-configuring {
-  .Cell-settings,
-  .Cell-content {
+.cell.is-configuring {
+  .settings,
+  .content {
     transform: translateY(-100%);
   }
 }

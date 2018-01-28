@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './style.css';
 
 const SingleValue = ({ heading, value }) => (
-  <div className={styles.container}>
-    <div className={styles.heading}>{heading}</div>
-    <div className={styles.body}>{value}</div>
+  <div styleName="container">
+    <div styleName="heading">{heading}</div>
+    <div styleName="body">{value}</div>
   </div>
 );
 

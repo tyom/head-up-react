@@ -28,7 +28,7 @@ export default class HeadUp extends Component {
     this.setState({ menuItems, dashboards });
 
     mousetrap
-      .bind('m', this.props.onToggleMenu)
+      .bind('h', this.props.onToggleMenu)
       .bind(['j', 'ctrl+up'], () =>
         this.getPrevDashboardName(getCurrentDashboardIndex())
       )
@@ -39,7 +39,7 @@ export default class HeadUp extends Component {
 
   componentWillUnmount() {
     mousetrap
-      .unbind('m')
+      .unbind('h')
       .unbind(['j', 'ctrl+up'])
       .unbind(['k', 'ctrl+down']);
   }

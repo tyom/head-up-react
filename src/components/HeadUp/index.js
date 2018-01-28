@@ -4,6 +4,7 @@ import mousetrap from 'mousetrap';
 import flatten from 'lodash/flatten';
 
 import Menu from '../Menu';
+import Dashboard from '../Dashboard';
 
 import './style.css';
 
@@ -75,7 +76,15 @@ export default class HeadUp extends Component {
     return (
       <div styleName="head-up">
         {this.renderMenu()}
-        <div styleName="collection">{this.props.children}</div>
+        <div styleName="collection">
+          {this.props.children.map(({ props }) => (
+            <Dashboard
+              {...props}
+              key={props.name}
+              isActive={this.props.activeDashboard === props.name}
+            />
+          ))}
+        </div>
       </div>
     );
   }

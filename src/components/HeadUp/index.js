@@ -5,7 +5,7 @@ import flatten from 'lodash/flatten';
 
 import Menu from '../Menu';
 
-import styles from './styles.css';
+import './style.css';
 
 export default class HeadUp extends Component {
   constructor(props) {
@@ -73,9 +73,9 @@ export default class HeadUp extends Component {
 
   render() {
     return (
-      <div className={styles.HeadUp}>
+      <div styleName="head-up">
         {this.renderMenu()}
-        <div className={styles['HeadUp-collection']}>{this.props.children}</div>
+        <div styleName="collection">{this.props.children}</div>
       </div>
     );
   }

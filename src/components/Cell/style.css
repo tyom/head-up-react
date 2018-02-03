@@ -29,8 +29,11 @@
   opacity: 0;
   transition: 200ms opacity;
 
-  &:hover .menuIcon,
-  &:focus .menuIcon {
+  &:hover .menuIcon {
+    opacity: .7;
+  }
+
+  &:active .menuIcon {
     opacity: 1;
   }
 

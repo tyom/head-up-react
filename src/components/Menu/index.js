@@ -32,8 +32,8 @@ export default function Menu({
             })}
             onClick={() => onSelectMenuItem(item.name)}
           >
-            {item.cells.map((x, i) => (
-              <Cell styleName="list-item-cell" size={x.size} key={i} />
+            {item.cells.map((cellSize, i) => (
+              <Cell styleName="list-item-cell" size={cellSize} key={i} />
             ))}
           </li>
         ))}

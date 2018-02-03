@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle: structure renders as closed 1`] = `
+<button
+  className="style_toggle__2daLT"
+  onClick={[MockFunction]}
+  type="button"
+>
+  <FaEllipsisV
+    className="style_toggleIcon__3MeTu"
+  />
+  <span>
+    Open
+     menu
+  </span>
+</button>
+`;
+
+exports[`Toggle: structure renders as open 1`] = `
+<button
+  className="style_toggle__2daLT"
+  onClick={[MockFunction]}
+  type="button"
+>
+  <FaAngleLeft
+    className="style_toggleIcon__3MeTu"
+  />
+  <span>
+    Close
+     menu
+  </span>
+</button>
+`;

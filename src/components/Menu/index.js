@@ -43,7 +43,12 @@ export default function Menu({
 }
 
 Menu.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      cells: PropTypes.array,
+    })
+  ),
   onSelectMenuItem: PropTypes.func,
   onToggleMenu: PropTypes.func,
   activeDashboard: PropTypes.string,

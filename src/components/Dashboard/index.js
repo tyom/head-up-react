@@ -7,21 +7,18 @@ import './style.css';
 
 export default class Dashboard extends React.Component {
   componentDidMount() {
-    if (!this.props.isActive) {
-      return;
-    }
-    // FIXME: Do away without setTimeout
-    const d = this._dashboard;
-    setTimeout(() => {
-      d.scrollIntoView();
-    }, 0);
+    this.handleScrolling();
   }
 
   componentDidUpdate() {
+    this.handleScrolling({ behavior: 'smooth' });
+  }
+
+  handleScrolling(behavior) {
     if (!this.props.isActive) {
       return;
     }
-    this._dashboard.scrollIntoView({ behavior: 'smooth' });
+    this._dashboard.scrollIntoView && this._dashboard.scrollIntoView(behavior);
   }
 
   render() {
@@ -47,6 +44,6 @@ Dashboard.defaultProps = {
 
 Dashboard.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.array,
+  children: PropTypes.node.isRequired,
   isActive: PropTypes.bool,
 };

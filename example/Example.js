@@ -28,7 +28,7 @@ class Example extends React.Component {
 
     this.state = {
       londonTemp: null,
-      londonForecast: null,
+      londonTempForecast: null,
     };
   }
 
@@ -45,6 +45,12 @@ class Example extends React.Component {
   }
 
   render() {
+    const isDataLoaded = Object.keys(this.state).every(x => this.state[x]);
+
+    if (!isDataLoaded) {
+      return null;
+    }
+
     return (
       <HeadUp>
         <Dashboard name="first">

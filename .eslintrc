@@ -1,7 +1,13 @@
 {
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "mount": true,
+    "shallow": true,
+    "render": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "babel-eslint",

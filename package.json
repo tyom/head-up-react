@@ -28,9 +28,14 @@
     "babel-plugin-react-css-modules": "3.3.3",
     "babel-preset-poi": "1.1.2",
     "del-cli": "1.1.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.1",
     "eslint": "^3.6.0",
     "eslint-plugin-prettier": "2.5.0",
     "eslint-plugin-react": "^6.3.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "22.1.4",
     "lodash": "^4.16.1",
     "npm-run-all": "4.1.2",
     "poi": "9.6.2",
@@ -48,8 +53,22 @@
     "build:js": "npx babel src --out-dir dist",
     "build:css": "postcss src/**/*.css -d dist -b src -c postcss.config.js",
     "build": "del lib && run-p build:*",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "watch:test": "jest --watch",
+    "coverage": "jest --coverage",
     "lint": "eslint src"
+  },
+  "jest": {
+    "setupFiles": ["./jest.setup.js"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.css$": "identity-obj-proxy"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   },
   "author": "Tyom Semonov <inspiro@gmail.com>",
   "license": "MIT"

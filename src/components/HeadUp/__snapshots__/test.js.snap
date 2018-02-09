@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeadUp: structure * doesn't render HeadUp when no children are given 1`] = `""`;
+
+exports[`HeadUp: structure * doesn't render Menu when only only one dashboard 1`] = `null`;
+
+exports[`HeadUp: structure * renders dashboards with children 1`] = `
+Array [
+  <Dashboard
+    isActive={false}
+    key="dashboard #1"
+    name="dashboard #1"
+  >
+    <div>
+      cell #
+      1
+      .1
+    </div>
+    <div>
+      cell #
+      1
+      .2
+    </div>
+  </Dashboard>,
+  <Dashboard
+    isActive={false}
+    key="dashboard #2"
+    name="dashboard #2"
+  >
+    <div>
+      cell #
+      2
+      .1
+    </div>
+    <div>
+      cell #
+      2
+      .2
+    </div>
+  </Dashboard>,
+]
+`;
+
+exports[`HeadUp: structure * renders renders Menu with dashboard layout 1`] = `
+<Menu
+  items={
+    Array [
+      Object {
+        "cells": Array [
+          undefined,
+          undefined,
+        ],
+        "name": "dashboard #1",
+      },
+      Object {
+        "cells": Array [
+          undefined,
+          undefined,
+        ],
+        "name": "dashboard #2",
+      },
+    ]
+  }
+/>
+`;

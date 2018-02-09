@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu: structure active state 1`] = `
+Array [
+  "style_list-item__1_OAQ style_is-active__3siLF",
+  "style_list-item__1_OAQ",
+]
+`;
+
+exports[`Menu: structure active state 2`] = `
+Array [
+  "style_list-item__1_OAQ",
+  "style_list-item__1_OAQ style_is-active__3siLF",
+]
+`;
+
+exports[`Menu: structure doesn't render if no items 1`] = `""`;
+
+exports[`Menu: structure render toggleMenu closed 1`] = `
+<Toggle
+  isMenuClosed={true}
+  onClick={[MockFunction]}
+/>
+`;
+
+exports[`Menu: structure render toggleMenu open 1`] = `
+<Toggle
+  isMenuClosed={false}
+  onClick={[MockFunction]}
+/>
+`;
+
+exports[`Menu: structure renders menu as closed 1`] = `"style_menu__10DPV style_is-hidden__1nmAb"`;
+
+exports[`Menu: structure renders menu items (dashboards) with cells 1`] = `
+<nav
+  className="style_menu__10DPV"
+>
+  <ul
+    className="style_list__342LE"
+  >
+    <li
+      className="style_list-item__1_OAQ"
+      key="first"
+      onClick={[Function]}
+    >
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="0"
+        size="1"
+      />
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="1"
+        size="2:1"
+      />
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="2"
+        size="1:3"
+      />
+    </li>
+    <li
+      className="style_list-item__1_OAQ"
+      key="second"
+      onClick={[Function]}
+    >
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="0"
+        size="2"
+      />
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="1"
+        size="3:2"
+      />
+      <Cell
+        className="style_list-item-cell__W6X3Q"
+        key="2"
+        size="1:2"
+      />
+    </li>
+  </ul>
+</nav>
+`;

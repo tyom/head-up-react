@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import { activateCell } from '../actions';
-import { activateCellSettings } from '../actions';
 
+import { activateCell, activateCellSettings } from '../actions';
 import Cell from '../components/Cell';
 import styles from '../components/Cell/style.css';
 
@@ -10,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   isConfiguring: ownProps.title === state.headup.activeCellSettings,
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+export function mapDispatchToProps(dispatch, ownProps) {
   return {
     onClick: evt => {
       const isButton = !!evt.target.closest(`.${styles['menuBtn']}`);

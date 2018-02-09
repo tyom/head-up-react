@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   isMenuClosed: state.headup.isMenuClosed,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onToggleMenu: () => dispatch(toggleMenu()),
   onSelectMenuItem: name => dispatch(activateDashboard(name)),
   onPrevDashboard: name => dispatch(activateDashboard(name)),

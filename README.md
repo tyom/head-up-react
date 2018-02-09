@@ -1,6 +1,8 @@
 # Heah-up!
 
 Multi-view cell-based dashboard reusable components in React.
+
+[![CircleCI](https://circleci.com/gh/tyom/head-up.svg?style=svg)](https://circleci.com/gh/tyom/head-up)
  
 ## Usage
 

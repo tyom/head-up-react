@@ -7,7 +7,7 @@ import {
   TOGGLE_MENU,
 } from './actions';
 
-function HeadUpReducer(headupState = {}, action) {
+export function HeadUpReducer(headupState = {}, action) {
   switch (action.type) {
     case ACTIVATE_CELL:
       return {

@@ -1,10 +1,16 @@
 import React from 'react';
+import mousetrap from 'mousetrap';
 import HeadUp from './';
 
 const onToggleMenuSpy = jest.fn();
 const onSelectMenuItemSpy = jest.fn();
 const onPrevDashboardSpy = jest.fn();
 const onNextDashboardSpy = jest.fn();
+
+jest.mock('mousetrap', () => ({
+  bind: jest.fn().mockReturnThis(),
+  unbind: jest.fn().mockReturnThis(),
+}));
 
 function getDashboards(numberOfDashboards = 0, includeInvalid = false) {
   const dashboardsArray = [...Array(numberOfDashboards).keys()].map(i => (
@@ -27,7 +33,7 @@ const twoDashboardsWithInvalid = <HeadUp>{getDashboards(2, true)}</HeadUp>;
 
 describe('HeadUp: structure', () => {
   afterEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
   describe("* doesn't render", () => {
@@ -62,6 +68,8 @@ describe('HeadUp: structure', () => {
 
 describe('HeadUp: behaviour', () => {
   describe('* navigation', () => {
+    let component;
+
     const threeDashboardsSecondActive = (
       <HeadUp
         activeDashboard="dashboard #2"
@@ -74,39 +82,72 @@ describe('HeadUp: behaviour', () => {
       </HeadUp>
     );
 
+    beforeEach(() => {
+      jest.clearAllMocks();
+      component = shallow(threeDashboardsSecondActive);
+    });
+
     test('getting current dashboard index', () => {
-      const component = shallow(threeDashboardsSecondActive);
       const index = component.instance().getCurrentIndex();
 
       expect(index).toEqual(1);
     });
 
     test('getting previous dashboard name', () => {
-      const component = shallow(threeDashboardsSecondActive);
       const name = component.instance().getPrevDashboardName();
 
       expect(name).toEqual('dashboard #1');
     });
 
     test('getting next dashboard name', () => {
-      const component = shallow(threeDashboardsSecondActive);
       const name = component.instance().getNextDashboardName();
 
       expect(name).toEqual('dashboard #3');
     });
 
-    test('calling #onPrevDashboard prop', () => {
-      const component = shallow(threeDashboardsSecondActive);
+    test('calling #onPrevDashboard prop with previous dashboard name', () => {
       component.instance().selectPrevDashboard();
 
-      expect(onPrevDashboardSpy).toBeCalled();
+      expect(onPrevDashboardSpy).toBeCalledWith('dashboard #1');
+    });
+
+    test('calling #onPrevDashboard prop with the last dashboard name after the first (cycle)', () => {
+      component.setProps({ activeDashboard: 'dashboard #1' });
+      component.instance().selectPrevDashboard();
+
+      expect(onPrevDashboardSpy).toBeCalledWith('dashboard #3');
     });
 
     test('calling #onNextDashboard prop', () => {
-      const component = shallow(threeDashboardsSecondActive);
       component.instance().selectNextDashboard();
 
       expect(onNextDashboardSpy).toBeCalled();
+    });
+
+    test('calling #onNextDashboard prop with the first dashboard name after the last (cycle)', () => {
+      component.setProps({ activeDashboard: 'dashboard #3' });
+      component.instance().selectNextDashboard();
+
+      expect(onNextDashboardSpy).toBeCalledWith('dashboard #1');
+    });
+
+
+    test('binding keyboard shortcuts', () => {
+      expect(mousetrap.bind.mock.calls).toEqual([
+        ['h', expect.any(Function)],
+        [['j', 'ctrl+up'], expect.any(Function)],
+        [['k', 'ctrl+down'], expect.any(Function)],
+      ]);
+    });
+
+    test('unbinding keyboard shortcuts', () => {
+      component.instance().componentWillUnmount();
+
+      expect(mousetrap.unbind.mock.calls).toEqual([
+        ['h'],
+        [['j', 'ctrl+up']],
+        [['k', 'ctrl+down']],
+      ]);
     });
   });
 });

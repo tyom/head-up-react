@@ -89,26 +89,6 @@
   }
 }
 
-* + .field {
-  margin-top: 10px;
-}
-
-.field label {
-  display: table;
-}
-
-.field input {
-  background: color(#fff a(.2));
-  border: 1px solid color(#000 a(.6));
-  padding: 2px 4px;
-  width: 100%;
-  font-size: 1em;
-
-  * + & {
-    margin-top: 5px;
-  }
-}
-
 /* States */
 
 .cell.is-active {

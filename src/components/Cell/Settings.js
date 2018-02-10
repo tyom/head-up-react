@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Widget from '../Widget';
+
 import './style.css';
 
 function handleClick(evt, isActive) {
@@ -8,17 +10,13 @@ function handleClick(evt, isActive) {
   }
 }
 
-const Settings = ({ isActive }) => (
-  <aside styleName="settings" onClick={evt => handleClick(evt, isActive)}>
-    <fieldset>
-      <legend>Settings</legend>
-      <div styleName="field">
-        <label htmlFor="input">Input</label>
-        <input type="text" id="input" />
-      </div>
-    </fieldset>
-  </aside>
-);
+const Settings = ({ isActive }) => {
+  return (
+    <aside styleName="settings" onClick={evt => handleClick(evt, isActive)}>
+      <Widget />
+    </aside>
+  );
+};
 
 Settings.propTypes = {
   isActive: PropTypes.bool,

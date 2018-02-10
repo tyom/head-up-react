@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
+import GoPlus from 'react-icons/lib/go/plus';
 
 import Cell from '../Cell';
 import Toggle from './Toggle';
@@ -38,6 +39,9 @@ export default function Menu({
           </li>
         ))}
       </ul>
+      <button type="button" styleName="addButton">
+        <GoPlus />
+      </button>
     </nav>
   );
 }

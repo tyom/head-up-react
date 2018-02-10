@@ -82,5 +82,11 @@ exports[`Menu: structure renders menu items (dashboards) with cells 1`] = `
       />
     </li>
   </ul>
+  <button
+    className="style_addButton__1Y43X"
+    type="button"
+  >
+    <GoPlus />
+  </button>
 </nav>
 `;

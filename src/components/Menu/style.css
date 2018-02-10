@@ -3,6 +3,7 @@
   padding: 1rem 1rem 1rem 2.5rem;
   transition: ease-in-out 160ms;
   background-color: color(#000 a(.4));
+  text-align: center;
 }
 
 .list {
@@ -42,6 +43,31 @@
     content: "";
     position: absolute 1px 1px 1px 1px;
     background: color(#fff a(.08));
+  }
+}
+
+.addButton {
+  border: 0;
+  background: none;
+  color: #fff;
+  opacity: .5;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  svg {
+    size: 2em;
+  }
+
+  * + & {
+    margin-top: 20px;
   }
 }
 

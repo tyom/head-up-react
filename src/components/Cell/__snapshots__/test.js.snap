@@ -4,7 +4,46 @@ exports[`Cell: structure activated settings 1`] = `
 <div
   class="style_cell__3Ra6O style_is-configuring__1N8Wb"
   style="width:25%;height:25%"
-/>
+>
+  <article
+    class="style_container__1ANRY"
+  >
+    <header
+      class="style_header__3dpY1"
+    >
+      test
+    </header>
+    <div
+      class="style_inner__1FGTU"
+    >
+      <div
+        class="style_content__1ERGj"
+      />
+      <aside
+        class="style_settings__3Nr_n"
+      >
+        <fieldset>
+          <legend>
+            Settings
+          </legend>
+          <div
+            class="style_field__2sqvg"
+          >
+            <label
+              for="input"
+            >
+              Input
+            </label>
+            <input
+              id="input"
+              type="text"
+            />
+          </div>
+        </fieldset>
+      </aside>
+    </div>
+  </article>
+</div>
 `;
 
 exports[`Cell: structure active state 1`] = `
@@ -38,7 +77,7 @@ exports[`Cell: structure inner container class name 1`] = `
 
 exports[`Cell: structure with children 1`] = `
 <div
-  class="style_cell__3Ra6O style_is-configuring__1N8Wb"
+  class="style_cell__3Ra6O"
   style="width:50%;height:50%"
 >
   <article
@@ -55,13 +94,6 @@ exports[`Cell: structure with children 1`] = `
       >
         contents
       </div>
-      <aside
-        class="style_settings__3Nr_n"
-      >
-        <h4>
-          Settings
-        </h4>
-      </aside>
     </div>
   </article>
 </div>

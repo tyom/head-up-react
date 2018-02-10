@@ -27,15 +27,11 @@ describe('Cell: structure', () => {
   });
 
   test('activated settings', () => {
-    rendered = render(<Cell isConfiguring={true} />);
+    rendered = render(<Cell title="test" isConfiguring={true} />);
   });
 
   test('with children', () => {
-    rendered = render(
-      <Cell size="2" isConfiguring={true}>
-        contents
-      </Cell>
-    );
+    rendered = render(<Cell size="2">contents</Cell>);
   });
 });
 
@@ -49,16 +45,37 @@ describe('Cell: behaviour', () => {
     expect(clickSpy).toHaveBeenCalled();
   });
 
-  test('click to activate cell settings', () => {
-    const clickSpy = jest.fn();
-    const wrapper = mount(
-      <Cell isActive={true} onSettingsClick={clickSpy}>
+  test('shows settings only without children', () => {
+    const wrapperWithChildren = mount(
+      <Cell title="test" isActive={true}>
         contents
       </Cell>
     );
-    const settingsButton = wrapper.find('header > button');
+    const wrapperWithoutChildren = mount(<Cell title="test" isActive={true} />);
+
+    expect(wrapperWithChildren.find('SettingsButton')).toHaveLength(0);
+    expect(wrapperWithoutChildren.find('SettingsButton')).toHaveLength(1);
+  });
+
+  test('click to activate cell settings', () => {
+    const clickSpy = jest.fn();
+    const wrapper = mount(
+      <Cell title="test" isActive={true} onSettingsClick={clickSpy} />
+    );
+    const settingsButton = wrapper.find('SettingsButton');
 
     settingsButton.simulate('click');
+
+    expect(clickSpy).toHaveBeenCalled();
+  });
+});
+
+describe('Cell: settings', () => {
+  test('clicking settings calls a handler', () => {
+    const clickSpy = jest.fn();
+    const wrapper = shallow(<Cell onClick={clickSpy} />);
+
+    wrapper.simulate('click');
 
     expect(clickSpy).toHaveBeenCalled();
   });

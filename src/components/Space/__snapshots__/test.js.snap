@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Space: structure active state 1`] = `
+<div
+  class="style_dashboard__1FOfF style_is-active__1dck2"
+  id="my-dashboard"
+>
+  Active dashboard
+</div>
+`;
+
+exports[`Space: structure default component 1`] = `
+<div
+  class="style_dashboard__1FOfF"
+  id="my-dashboard"
+>
+  content
+</div>
+`;

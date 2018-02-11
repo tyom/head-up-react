@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import mousetrap from 'mousetrap';
-import flatten from 'lodash/fp/flatten';
-import filter from 'lodash/fp/filter';
-import get from 'lodash/fp/get';
-import compose from 'lodash/fp/compose';
+import flatten from 'lodash/flatten';
+import uniqueId from 'lodash/uniqueId';
+import reject from 'lodash/reject';
 
 import Menu from '../Menu';
-import Dashboard from '../Dashboard';
+import Space from '../Space';
 
 import './style.css';
 
@@ -15,26 +14,9 @@ export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
-    const dashboards = compose(filter(get('props.children')), flatten)([
-      this.props.children,
-    ]);
-
-    const menuItems = dashboards.map(({ props }) => ({
-      name: props.name,
-      cells: flatten([props.children]).map(cell => cell.props.size),
-    }));
-
     this.state = {
-      dashboards,
-      menuItems,
+      spaces: flatten([this.props.children]),
     };
-  }
-
-  componentDidMount() {
-    mousetrap
-      .bind('h', this.props.onToggleMenu)
-      .bind(['j', 'ctrl+up'], this.selectPrevDashboard.bind(this))
-      .bind(['k', 'ctrl+down'], this.selectNextDashboard.bind(this));
   }
 
   componentWillUnmount() {
@@ -44,55 +26,92 @@ export default class HeadUp extends Component {
       .unbind(['k', 'ctrl+down']);
   }
 
+  componentDidMount() {
+    mousetrap
+      .bind('h', this.props.onToggleMenu)
+      .bind(['j', 'ctrl+up'], this.selectPrevSpace.bind(this))
+      .bind(['k', 'ctrl+down'], this.selectNextSpace.bind(this));
+  }
+
   getCurrentIndex() {
     return this.state.menuItems
       .map(x => x.name)
-      .indexOf(this.props.activeDashboard);
+      .indexOf(this.props.activeSpace);
   }
 
-  getPrevDashboardName() {
+  getPrevSpaceName() {
     const currentIndex = this.getCurrentIndex();
     const prevIndex =
       currentIndex - 1 < 0 ? this.state.menuItems.length - 1 : currentIndex - 1;
     return this.state.menuItems[prevIndex].name;
   }
 
-  getNextDashboardName() {
+  getNextSpaceName() {
     const currentIndex = this.getCurrentIndex();
     const nextIndex =
       currentIndex + 1 > this.state.menuItems.length - 1 ? 0 : currentIndex + 1;
     return this.state.menuItems[nextIndex].name;
   }
 
-  selectPrevDashboard() {
-    const name = this.getPrevDashboardName();
-    this.props.onPrevDashboard(name);
+  selectPrevSpace() {
+    const name = this.getPrevSpaceName();
+    this.props.onPrevSpace(name);
   }
 
-  selectNextDashboard() {
-    const name = this.getNextDashboardName();
-    this.props.onNextDashboard(name);
+  selectNextSpace() {
+    const name = this.getNextSpaceName();
+    this.props.onNextSpace(name);
+  }
+
+  createSpace() {
+    const name = uniqueId('space-');
+
+    this.setState({
+      spaces: [...this.state.spaces, { props: { name, children: [] } }],
+    });
+
+    this.props.onSelectMenuItem(name);
+  }
+
+  editSpace(name) {
+    console.log('editing ' + name);
+  }
+
+  removeSpace(name) {
+    const isLast = this.getCurrentIndex() === this.state.spaces.length - 1;
+
+    if (isLast) {
+      this.selectPrevSpace();
+    } else {
+      this.selectNextSpace();
+    }
+
+    this.setState({
+      spaces: reject(this.state.spaces, ['name', name]),
+    });
   }
 
   renderMenu() {
-    if (this.state.menuItems.length < 2) {
+    if (this.state.spaces.length < 2) {
       return null;
     }
     return (
       <Menu
-        items={this.state.menuItems}
-        activeDashboard={this.props.activeDashboard}
+        spaces={this.state.spaces}
+        activeSpace={this.props.activeSpace}
         isMenuClosed={this.props.isMenuClosed}
         onToggleMenu={this.props.onToggleMenu}
         onSelectMenuItem={this.props.onSelectMenuItem}
+        onCreateSpace={() => this.createSpace()}
+        onRemoveSpace={name => this.editSpace(name)}
       />
     );
   }
 
   render() {
-    const { dashboards } = this.state;
+    const { spaces } = this.state;
 
-    if (!dashboards.length) {
+    if (!spaces.length) {
       return null;
     }
 
@@ -100,11 +119,11 @@ export default class HeadUp extends Component {
       <div styleName="head-up">
         {this.renderMenu()}
         <div styleName="collection">
-          {this.state.dashboards.map(({ props }) => (
-            <Dashboard
+          {this.state.spaces.map(({ props }) => (
+            <Space
               {...props}
               key={props.name}
-              isActive={this.props.activeDashboard === props.name}
+              isActive={this.props.activeSpace === props.name}
             />
           ))}
         </div>
@@ -118,10 +137,10 @@ HeadUp.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  activeDashboard: PropTypes.string,
+  activeSpace: PropTypes.string,
   isMenuClosed: PropTypes.bool,
   onToggleMenu: PropTypes.func,
   onSelectMenuItem: PropTypes.func,
-  onPrevDashboard: PropTypes.func,
-  onNextDashboard: PropTypes.func,
+  onPrevSpace: PropTypes.func,
+  onNextSpace: PropTypes.func,
 };

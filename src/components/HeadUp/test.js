@@ -106,27 +106,27 @@ describe('HeadUp: behaviour', () => {
     });
 
     test('calling #onPrevDashboard prop with previous dashboard name', () => {
-      component.instance().selectPrevDashboard();
+      component.instance().selectPrevSpace();
 
       expect(onPrevDashboardSpy).toBeCalledWith('dashboard #1');
     });
 
     test('calling #onPrevDashboard prop with the last dashboard name after the first (cycle)', () => {
       component.setProps({ activeDashboard: 'dashboard #1' });
-      component.instance().selectPrevDashboard();
+      component.instance().selectPrevSpace();
 
       expect(onPrevDashboardSpy).toBeCalledWith('dashboard #3');
     });
 
     test('calling #onNextDashboard prop', () => {
-      component.instance().selectNextDashboard();
+      component.instance().selectNextSpace();
 
       expect(onNextDashboardSpy).toBeCalled();
     });
 
     test('calling #onNextDashboard prop with the first dashboard name after the last (cycle)', () => {
       component.setProps({ activeDashboard: 'dashboard #3' });
-      component.instance().selectNextDashboard();
+      component.instance().selectNextSpace();
 
       expect(onNextDashboardSpy).toBeCalledWith('dashboard #1');
     });

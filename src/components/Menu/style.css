@@ -3,7 +3,6 @@
   padding: 1rem 1rem 1rem 2.5rem;
   transition: ease-in-out 160ms;
   background-color: color(#000 a(.4));
-  text-align: center;
 }
 
 .list {
@@ -14,16 +13,11 @@
 }
 
 .list-item {
-  height: 10vh;
   border: 1px solid color(#fff a(.2));
   background-color: color(#fff a(.02));
-  align-self: center;
-  padding: 1px;
   cursor: pointer;
   opacity: .7;
   transition: .2s;
-  display: flex;
-  flex-flow: row wrap;
 
   &:not(:first-child) {
     margin-top: 1rem;
@@ -46,13 +40,55 @@
   }
 }
 
+.container {
+  height: 10vh;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1px;
+}
+
+.name {
+  position: relative;
+  font-size: .8rem;
+  padding: 0 4px;
+
+  button {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: color(#fff a(.7));
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    cursor: pointer;
+
+    svg {
+      display: block;
+    }
+  }
+
+}
+
+.is-active .name button {
+  display: block;
+}
+
 .addButton {
   border: 0;
   background: none;
   color: #fff;
   opacity: .5;
   cursor: pointer;
+  align-self: center;
+  display: flex;
+  margin: auto;
   padding: 0;
+
+  * + & {
+    margin-top: 20px;
+  }
 
   &:hover {
     opacity: .7;
@@ -64,10 +100,6 @@
 
   svg {
     size: 2em;
-  }
-
-  * + & {
-    margin-top: 20px;
   }
 }
 

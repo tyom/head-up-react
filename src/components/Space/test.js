@@ -1,10 +1,10 @@
 import React from 'react';
-import Dashboard from './';
+import Space from './';
 
 const scrollIntoViewSpy = jest.fn();
 
 function mountComponent(props) {
-  const component = mount(<Dashboard {...props}>content</Dashboard>);
+  const component = mount(<Space {...props}>content</Space>);
   const componentInstance = component.instance();
 
   componentInstance._dashboard = {
@@ -14,7 +14,7 @@ function mountComponent(props) {
   return componentInstance;
 }
 
-describe('Dashboard: structure', () => {
+describe('Space: structure', () => {
   let rendered;
 
   afterEach(() => {
@@ -22,19 +22,19 @@ describe('Dashboard: structure', () => {
   });
 
   test('default component', () => {
-    rendered = render(<Dashboard name="my dashboard">content</Dashboard>);
+    rendered = render(<Space name="my dashboard">content</Space>);
   });
 
   test('active state', () => {
     rendered = render(
-      <Dashboard name="my dashboard" isActive={true}>
+      <Space name="my dashboard" isActive={true}>
         Active dashboard
-      </Dashboard>
+      </Space>
     );
   });
 });
 
-describe('Dashboard: behaviour', () => {
+describe('Space: behaviour', () => {
   let componentInstance;
 
   describe('scrolling', () => {

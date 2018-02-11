@@ -3,7 +3,7 @@ import createReducer, { HeadUpReducer } from './reducers';
 import {
   activateCell,
   activateCellSettings,
-  activateDashboard,
+  activateSpace,
   toggleMenu,
 } from './actions';
 
@@ -48,7 +48,7 @@ describe('Reducers', () => {
   });
 
   test('activate dashboard', () => {
-    const result = HeadUpReducer(initialState, activateDashboard(1));
+    const result = HeadUpReducer(initialState, activateSpace(1));
     expect(result).toHaveProperty('activeDashboard', 1);
   });
 

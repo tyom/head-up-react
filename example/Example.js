@@ -2,7 +2,7 @@ import React from 'react';
 import { VictoryPie } from 'victory';
 import get from 'lodash/fp/get';
 
-import { HeadUp, Dashboard, Cell } from '../src';
+import { HeadUp, Space, Cell } from '../src';
 
 import { SingleValue, LineGraph } from '../src/widgets';
 
@@ -53,7 +53,7 @@ class Example extends React.Component {
 
     return (
       <HeadUp>
-        <Dashboard name="first">
+        <Space name="first">
           <Cell title="Hello" size="1">
             <svg
               style={{ width: '100%', height: '100%' }}
@@ -76,15 +76,15 @@ class Example extends React.Component {
             />
           </Cell>
           <Cell title="Gollum" size="4:1" />
-        </Dashboard>
-        <Dashboard name="second">
+        </Space>
+        <Space name="second">
           <Cell title="Best time" size="3: 2" />
           <Cell title="Best quality" size="1:2" />
           <Cell title="Quickest win" size="2:1" />
           <Cell title="Shortest straw" size="2:1" />
           <Cell title="Maximum effort" size="2:1" />
           <Cell title="Strongest link" size="2:1" />
-        </Dashboard>
+        </Space>
       </HeadUp>
     );
   }

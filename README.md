@@ -17,7 +17,7 @@ Import Head-up components and styles
 ```js
 import {
   Dashboards,
-  Dashboard,
+  Space,
   Cell
 } from Headup;
 

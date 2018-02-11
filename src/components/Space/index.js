@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
+import Cell from '../Cell';
 
 import './style.css';
 
-export default class Dashboard extends React.Component {
+export default class Space extends React.Component {
   componentDidMount() {
     this.handleScrolling();
   }
@@ -38,12 +39,14 @@ export default class Dashboard extends React.Component {
   }
 }
 
-Dashboard.defaultProps = {
+Space.defaultProps = {
   isActive: false,
+  cells: [],
 };
 
-Dashboard.propTypes = {
+Space.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  cells: PropTypes.array,
   isActive: PropTypes.bool,
 };

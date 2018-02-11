@@ -1,4 +1,4 @@
-import { toggleMenu, activateDashboard } from '../actions';
+import { toggleMenu, activateSpace } from '../actions';
 import { mapDispatchToProps } from './HeadUp';
 
 describe('#mapDispatchToProps', () => {
@@ -16,21 +16,21 @@ describe('#mapDispatchToProps', () => {
     expect(dispatch).toBeCalledWith(toggleMenu());
   });
 
-  test('dispatch activateDashboard action on specific nav item', () => {
+  test('dispatch activateSpace action on specific nav item', () => {
     result.onSelectMenuItem('first');
 
-    expect(dispatch).toBeCalledWith(activateDashboard('first'));
+    expect(dispatch).toBeCalledWith(activateSpace('first'));
   });
 
-  test('dispatch activateDashboard action on previous nav item', () => {
+  test('dispatch activateSpace action on previous nav item', () => {
     result.onPrevDashboard('third');
 
-    expect(dispatch).toBeCalledWith(activateDashboard('third'));
+    expect(dispatch).toBeCalledWith(activateSpace('third'));
   });
 
-  test('dispatch activateDashboard action on next nav item', () => {
+  test('dispatch activateSpace action on next nav item', () => {
     result.onNextDashboard('second');
 
-    expect(dispatch).toBeCalledWith(activateDashboard('second'));
+    expect(dispatch).toBeCalledWith(activateSpace('second'));
   });
 });

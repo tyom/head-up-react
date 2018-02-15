@@ -12,6 +12,7 @@ body {
   background: #222;
   color: #ddd;
   -webkit-font-smoothing: antialiased;
+  height: 100vh;
 }
 
 .collection {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Container from './Container';
 import { GRID_SIZE } from '../../constants';
 
-import './style.css';
+import styles from './style.css';
 
 const Cell = ({
   title,
@@ -19,6 +19,14 @@ const Cell = ({
 }) => {
   const dimensions = size.split(/:|\//).map(d => `${d / GRID_SIZE * 100}%`);
 
+  function handleClick(evt) {
+    const isButton = !!evt.target.closest(`.${styles['menuBtn']}`);
+    if (isButton) {
+      return;
+    }
+    onClick && onClick(evt);
+  }
+
   return (
     <div
       styleName={classNames('cell', {
@@ -26,7 +34,7 @@ const Cell = ({
         'is-configuring': isConfiguring,
       })}
       className={className}
-      onClick={onClick}
+      onClick={handleClick}
       style={{
         width: dimensions[0],
         height: dimensions[1] || dimensions[0],

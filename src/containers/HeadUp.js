@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { activateSpace, toggleMenu, addSpace } from '../actions';
+import { activateSpace, toggleMenu, addSpace, addWidget } from '../actions';
 import HeadUp from '../components/HeadUp';
 
 const mapStateToProps = state => ({
@@ -15,6 +15,7 @@ export const mapDispatchToProps = dispatch => ({
   onPrevSpace: name => dispatch(activateSpace(name)),
   onNextSpace: name => dispatch(activateSpace(name)),
   onAddSpace: name => dispatch(addSpace(name)),
+  onAddWidget: name => dispatch(addWidget(name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadUp);

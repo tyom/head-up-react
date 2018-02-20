@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import mousetrap from 'mousetrap';
+import short from 'short-uuid';
 
 import Menu from '../Menu';
 import Space from '../Space';
@@ -8,13 +9,27 @@ import Cell from '../../containers/Cell';
 
 import './style.css';
 
-const transformSpaceComponentToData = space => ({
+const transformSpaceComponentToData = cb => space => ({
   name: space.props.name,
   cells: space.props.children
-    ? space.props.children.map(cell => ({
-        size: cell.props.size,
-        title: cell.props.title,
-      }))
+    ? space.props.children.map(cell => {
+        let widgetId;
+        const widget = cell.props.children;
+
+        const result = {
+          size: cell.props.size,
+          title: cell.props.title,
+        };
+
+        if (widget) {
+          widgetId = short().new();
+          result.widgetId = widgetId;
+
+          cb(widgetId, widget);
+        }
+
+        return result;
+      })
     : [],
 });
 
@@ -22,8 +37,10 @@ export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
+    this.addWidget = this.addWidget.bind(this);
+
     const transformedChildren = this.props.children.map(
-      transformSpaceComponentToData
+      transformSpaceComponentToData(this.addWidget)
     );
 
     this.state = {
@@ -100,6 +117,10 @@ export default class HeadUp extends Component {
   //   }
   // }
 
+  addWidget(id, widget) {
+    this.props.onAddWidget(id);
+  }
+
   renderMenu() {
     if (this.state.spaces.length < 2) {
       return null;
@@ -127,8 +148,8 @@ export default class HeadUp extends Component {
             isActive={this.props.activeSpace === space.name}
           >
             {space.cells &&
-              space.cells.map(({ title, size }, i) => (
-                <Cell title={title} size={size} key={i} />
+              space.cells.map(({ title, size, widgetId }, i) => (
+                <Cell title={title} size={size} key={i} widgetId={widgetId} />
               ))}
           </Space>
         ))}
@@ -156,4 +177,5 @@ HeadUp.propTypes = {
   onPrevSpace: PropTypes.func,
   onNextSpace: PropTypes.func,
   onAddSpace: PropTypes.func,
+  onAddWidget: PropTypes.func,
 };

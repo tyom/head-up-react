@@ -18,6 +18,7 @@
     "redux": "^3.6.0",
     "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.1.0",
+    "short-uuid": "2.3.4",
     "smoothscroll-polyfill": "^0.3.3",
     "style-loader": "^0.13.1",
     "victory": "^0.24.2"

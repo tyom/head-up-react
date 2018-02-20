@@ -6,6 +6,7 @@ import Cell from '../components/Cell';
 const mapStateToProps = (state, ownProps) => ({
   isActive: ownProps.title === state.headup.activeCell,
   isConfiguring: ownProps.title === state.headup.activeCellSettings,
+  widget: state.widgets.find(w => w.key === ownProps.widgetId),
 });
 
 export function mapDispatchToProps(dispatch, ownProps) {

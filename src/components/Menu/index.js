@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import flatten from 'lodash/flatten';
 import GoPlus from 'react-icons/lib/go/plus';
 import FaEdit from 'react-icons/lib/fa/edit';
 
@@ -17,9 +16,10 @@ const MenuItem = ({ name, cells = [], isActive, onClick, onRemoveClick }) => (
     onClick={() => onClick(name)}
   >
     <div styleName="container">
-      {cells && cells.map((cell, i) => (
-        <Cell styleName="list-item-cell" size={cell.props.size} key={i} />
-      ))}
+      {cells &&
+        cells.map((cell, i) => (
+          <Cell styleName="list-item-cell" size={cell.size} key={i} />
+        ))}
     </div>
     <div styleName="name">
       {name}
@@ -65,10 +65,9 @@ const Menu = ({
       <ul styleName="list">
         {spaces.map(space => (
           <MenuItem
-            {...space.props}
-            cells={flatten([space.props.children])}
-            key={space.props.name}
-            isActive={space.props.name === activeSpace}
+            {...space}
+            key={space.name}
+            isActive={space.name === activeSpace}
             onClick={onSelectMenuItem}
             onRemoveClick={onRemoveSpace}
           />
@@ -85,7 +84,7 @@ Menu.propTypes = {
   spaces: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      cells: PropTypes.array,
+      children: PropTypes.array,
     })
   ),
   onSelectMenuItem: PropTypes.func,

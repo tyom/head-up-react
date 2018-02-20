@@ -2,6 +2,7 @@ export const ACTIVATE_CELL = 'ACTIVATE_CELL';
 export const ACTIVATE_CELL_SETTINGS = 'ACTIVATE_CELL_SETTINGS';
 export const ACTIVATE_SPACE = 'ACTIVATE_SPACE';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const ADD_SPACE = 'ADD_SPACE';
 
 export function activateCell(id) {
   return { id, type: ACTIVATE_CELL };
@@ -17,4 +18,8 @@ export function activateSpace(id) {
 
 export function toggleMenu() {
   return { type: TOGGLE_MENU };
+}
+
+export function addSpace(payload) {
+  return { type: ADD_SPACE, payload };
 }

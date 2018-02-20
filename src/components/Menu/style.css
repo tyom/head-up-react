@@ -43,7 +43,7 @@
 }
 
 .container {
-  height: 10vh;
+  height: 9vh;
   display: flex;
   flex-flow: row wrap;
   padding: 1px;
@@ -63,7 +63,7 @@
     font-size: 1rem;
     position: absolute;
     top: 0;
-    right: 3px;
+    right: 1px;
     cursor: pointer;
 
     svg {

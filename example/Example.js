@@ -1,10 +1,7 @@
 import React from 'react';
-import { VictoryPie } from 'victory';
 import get from 'lodash/fp/get';
 
-import { HeadUp, Space, Cell } from '../src';
-
-import { SingleValue, LineGraph } from '../src/widgets';
+import { HeadUp, Space, Cell, Widget } from '../src';
 
 import { API_KEY, ENDPOINT } from './constants';
 
@@ -52,45 +49,40 @@ class Example extends React.Component {
   }
 
   render() {
-    const isDataLoaded = Object.keys(this.state).every(x => this.state[x]);
-
-    if (!isDataLoaded) {
-      return null;
-    }
-
     return (
       <HeadUp>
-        <Space name="first">
-          <Cell title="Hello" size="1">
-            <svg
-              style={{ width: '100%', height: '100%' }}
-              viewBox="0 0 400 400"
-            >
-              <VictoryPie standalone={false} />
-            </svg>
+        <Space name="weather">
+          <Cell>
+            <Widget type="Pie" title="Example pie" />
           </Cell>
-          <Cell title="World" size="1" />
-          <Cell title="Foo" size="2:1" />
-          <Cell title="3 day forecast" size="2">
-            {this.state.londonTempForecast ? (
-              <LineGraph values={this.state.londonTempForecast} />
-            ) : null}
-          </Cell>
-          <Cell title="Current weather" size="2">
-            <SingleValue
-              heading="London"
-              value={`${this.state.londonTemp}°C`}
+          <Cell />
+          <Cell size="2:1" />
+          <Cell size="2">
+            <Widget
+              title="3 day forecast"
+              type="LineGraph"
+              data={{ values: this.state.londonTempForecast }}
             />
           </Cell>
-          <Cell title="Gollum" size="4:1" />
+          <Cell size="2">
+            <Widget
+              title="Current weather"
+              type="SingleValue"
+              data={{
+                heading: 'London',
+                value: `${this.state.londonTemp}°C`,
+              }}
+            />
+          </Cell>
+          <Cell size="4:1" />
         </Space>
         <Space name="second">
-          <Cell title="Best time" size="3: 2" />
-          <Cell title="Best quality" size="1:2" />
-          <Cell title="Quickest win" size="2:1" />
-          <Cell title="Shortest straw" size="2:1" />
-          <Cell title="Maximum effort" size="2:1" />
-          <Cell title="Strongest link" size="2:1" />
+          <Cell size="3:2" />
+          <Cell size="1:2" />
+          <Cell size="2:1" />
+          <Cell size="2:1" />
+          <Cell size="2:1" />
+          <Cell size="2:1" />
         </Space>
       </HeadUp>
     );

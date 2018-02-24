@@ -19,6 +19,7 @@ const LineGraph = ({ values }) => (
           label: { fill: '#fff' },
           tickLabels: { fill: '#888' },
         }}
+        tickCount={5}
         tickFormat={x =>
           new Date(x)
             .toISOString()

@@ -14,7 +14,7 @@ export const mapDispatchToProps = dispatch => ({
   onSelectMenuItem: name => dispatch(activateSpace(name)),
   onPrevSpace: name => dispatch(activateSpace(name)),
   onNextSpace: name => dispatch(activateSpace(name)),
-  onAddSpace: name => dispatch(addSpace(name)),
+  onAddSpace: space => dispatch(addSpace(space)),
   onAddWidget: name => dispatch(addWidget(name)),
 });
 

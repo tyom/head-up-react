@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background: #222;
+  background: #111;
 }
 
 .head-up {
@@ -19,4 +19,5 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background: #222;
 }

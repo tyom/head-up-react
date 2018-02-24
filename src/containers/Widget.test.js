@@ -1,5 +1,5 @@
 import { activateCell, activateCellSettings } from '../actions';
-import { mapDispatchToProps } from './Cell';
+import { mapDispatchToProps } from './Widget';
 
 describe('#mapDispatchToProps', () => {
   let result;

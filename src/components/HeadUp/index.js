@@ -2,81 +2,62 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import mousetrap from 'mousetrap';
 import short from 'short-uuid';
+import get from 'lodash/get';
 
 import Menu from '../Menu';
 import Space from '../Space';
-import Cell from '../../containers/Cell';
+import Cell from '../../components/Cell';
 
 import './style.css';
-
-const transformSpaceComponentToData = cb => space => ({
-  name: space.props.name,
-  cells: space.props.children
-    ? space.props.children.map(cell => {
-        let widgetId;
-        const widget = cell.props.children;
-
-        const result = {
-          size: cell.props.size,
-          title: cell.props.title,
-        };
-
-        if (widget) {
-          widgetId = short().new();
-          result.widgetId = widgetId;
-
-          cb(widgetId, widget);
-        }
-
-        return result;
-      })
-    : [],
-});
 
 export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
-    const transformedChildren = this.props.children.map(
-      transformSpaceComponentToData(::this.addWidget)
-    );
-
     this.state = {
-      spaces: [...transformedChildren, ...this.props.spaces],
+      spaces: this.props.spaces,
     };
   }
 
   componentDidMount() {
     mousetrap
-      .bind('h', this.props.onToggleMenu)
-      .bind(['j', 'ctrl+up'], ::this.selectPrevSpace)
-      .bind(['k', 'ctrl+down'], ::this.selectNextSpace);
+      .bind('j', this.props.onToggleMenu)
+      .bind(['k', 'ctrl+down'], ::this.selectNextSpace)
+      .bind(['l', 'ctrl+up'], ::this.selectPrevSpace);
   }
 
   componentWillUnmount() {
     mousetrap
-      .unbind('h')
-      .unbind(['j', 'ctrl+up'])
-      .unbind(['k', 'ctrl+down']);
+      .unbind('j')
+      .unbind(['k', 'ctrl+down'])
+      .unbind(['j', 'ctrl+up']);
+  }
+
+  componentWillReceiveProps() {
+    // TODO: Investigate how to deal with async properly
+    // setTimeout(::this.updateSpaces);
+    setTimeout(() => {
+      this.props.children.map(::this.createSpace);
+    });
   }
 
   getCurrentIndex() {
-    return this.state.spaces.map(x => x.name).indexOf(this.props.activeSpace);
+    return this.props.spaces.map(x => x.name).indexOf(this.props.activeSpace);
   }
 
   getPrevSpaceName() {
     const currentIndex = this.getCurrentIndex();
     const prevIndex =
-      currentIndex - 1 < 0 ? this.state.spaces.length - 1 : currentIndex - 1;
-    return this.state.spaces[prevIndex].name;
+      currentIndex - 1 < 0 ? this.props.spaces.length - 1 : currentIndex - 1;
+    return this.props.spaces[prevIndex].name;
   }
 
   getNextSpaceName() {
     const currentIndex = this.getCurrentIndex();
     const nextIndex =
-      currentIndex + 1 > this.state.spaces.length - 1 ? 0 : currentIndex + 1;
+      currentIndex + 1 > this.props.spaces.length - 1 ? 0 : currentIndex + 1;
 
-    return this.state.spaces[nextIndex].name;
+    return this.props.spaces[nextIndex].name;
   }
 
   selectPrevSpace() {
@@ -89,43 +70,42 @@ export default class HeadUp extends Component {
     this.props.onNextSpace(name);
   }
 
-  createSpace() {
-    const name = `space-${this.state.spaces.length + 1}`;
-    const space = { name };
+  createSpace({ props } = {}) {
+    if (!props) {
+      const name = `space-${this.props.spaces.length + 1}`;
 
-    this.props.onAddSpace(space);
-    this.props.onSelectMenuItem(name);
+      this.props.onAddSpace({ name });
+      this.props.onNextSpace(name);
+      return;
+    }
 
-    this.setState({
-      spaces: [...this.state.spaces, space],
-    });
-  }
+    const cellsFromChildren = props.children.map(cell => ({
+      size: cell.props.size,
+      widget: {
+        ...get(cell, 'props.children.props'),
+        id: short().new(),
+      },
+    }));
+    const space = { name: props.name, cells: cellsFromChildren };
+    const isExistingSpace = Boolean(
+      this.props.spaces.find(s => s.name === space.name)
+    );
 
-  // editSpace(name) {
-  //   console.log('editing ' + name);
-  // }
-  //
-  // removeSpace(name) {
-  //   const isLast = this.getCurrentIndex() === this.state.spaces.length - 1;
-  //
-  //   if (isLast) {
-  //     this.selectPrevSpace();
-  //   } else {
-  //     this.selectNextSpace();
-  //   }
-  // }
-
-  addWidget(id, widget) {
-    this.props.onAddWidget(id);
+    if (!isExistingSpace) {
+      this.props.onAddSpace(space);
+    }
   }
 
   renderMenu() {
-    if (this.state.spaces.length < 2) {
+    const spaces = get(this.props, 'spaces', []);
+
+    if (spaces.length < 2) {
       return null;
     }
+
     return (
       <Menu
-        spaces={this.state.spaces}
+        spaces={spaces}
         activeSpace={this.props.activeSpace}
         isMenuClosed={this.props.isMenuClosed}
         onToggleMenu={this.props.onToggleMenu}
@@ -137,18 +117,18 @@ export default class HeadUp extends Component {
   }
 
   renderSpaces() {
+    const spaces = get(this.props, 'spaces', []);
+
     return (
       <div styleName="collection">
-        {this.state.spaces.map(space => (
+        {spaces.map(space => (
           <Space
             name={space.name}
             key={space.name}
             isActive={this.props.activeSpace === space.name}
           >
             {space.cells &&
-              space.cells.map(({ title, size, widgetId }, i) => (
-                <Cell title={title} size={size} key={i} widgetId={widgetId} />
-              ))}
+              space.cells.map((props, i) => <Cell {...props} key={i} />)}
           </Space>
         ))}
       </div>
@@ -175,5 +155,4 @@ HeadUp.propTypes = {
   onPrevSpace: PropTypes.func,
   onNextSpace: PropTypes.func,
   onAddSpace: PropTypes.func,
-  onAddWidget: PropTypes.func,
 };

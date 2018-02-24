@@ -37,10 +37,8 @@ export default class HeadUp extends Component {
   constructor(props) {
     super(props);
 
-    this.addWidget = this.addWidget.bind(this);
-
     const transformedChildren = this.props.children.map(
-      transformSpaceComponentToData(this.addWidget)
+      transformSpaceComponentToData(::this.addWidget)
     );
 
     this.state = {
@@ -51,8 +49,8 @@ export default class HeadUp extends Component {
   componentDidMount() {
     mousetrap
       .bind('h', this.props.onToggleMenu)
-      .bind(['j', 'ctrl+up'], this.selectPrevSpace.bind(this))
-      .bind(['k', 'ctrl+down'], this.selectNextSpace.bind(this));
+      .bind(['j', 'ctrl+up'], ::this.selectPrevSpace)
+      .bind(['k', 'ctrl+down'], ::this.selectNextSpace);
   }
 
   componentWillUnmount() {

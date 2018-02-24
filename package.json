@@ -27,6 +27,7 @@
     "babel-cli": "6.26.0",
     "babel-eslint": "8.2.1",
     "babel-plugin-react-css-modules": "3.3.3",
+    "babel-plugin-transform-function-bind": "6.22.0",
     "babel-preset-poi": "1.1.2",
     "del-cli": "1.1.0",
     "enzyme": "3.3.0",

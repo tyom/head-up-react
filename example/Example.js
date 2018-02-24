@@ -33,8 +33,15 @@ class Example extends React.Component {
   }
 
   async componentDidMount() {
-    const londonTemp = await getCurrentTempForUkCity('London');
-    const londonForecast = await getForecastForUkCity('London');
+    let londonTemp;
+    let londonForecast;
+
+    try {
+      londonTemp = await getCurrentTempForUkCity('London');
+      londonForecast = await getForecastForUkCity('London');
+    } catch (error) {
+      throw new Error('API down');
+    }
 
     const londonTempForecast = londonForecast.list.map(item => ({
       x: new Date(item.dt * 1000),

@@ -68,6 +68,10 @@
   opacity: .4;
 }
 
+.body svg {
+  size: 100%;
+}
+
 /* Form */
 
 fieldset {

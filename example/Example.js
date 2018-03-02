@@ -56,15 +56,7 @@ class Example extends React.Component {
             <Widget type="Pie" title="Example pie" />
           </Cell>
           <Cell />
-          <Cell size="2:1" />
-          <Cell size="2">
-            <Widget
-              title="3 day forecast"
-              type="LineGraph"
-              data={{ values: this.state.londonTempForecast }}
-            />
-          </Cell>
-          <Cell size="2">
+          <Cell size="2:1">
             <Widget
               title="Current weather"
               type="SingleValue"
@@ -74,6 +66,14 @@ class Example extends React.Component {
               }}
             />
           </Cell>
+          <Cell size="2">
+            <Widget
+              title="3 day forecast"
+              type="Bar"
+              data={{ values: this.state.londonTempForecast }}
+            />
+          </Cell>
+          <Cell size="2" />
           <Cell size="4:1" />
         </Space>
         <Space name="second">

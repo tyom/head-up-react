@@ -97,11 +97,16 @@ legend {
 }
 
 .field input {
-  background: color(#fff a(.4));
+  background: color(#fff a(.5));
   border: 1px solid #000;
   padding: 4px;
   width: 100%;
   font-size: 1em;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff;
+  }
 
   * + & {
     margin-top: 5px;

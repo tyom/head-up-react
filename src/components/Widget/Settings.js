@@ -23,7 +23,7 @@ const Settings = ({ isActive, settings = [] }) => (
           <input
             type="text"
             id={`${item.getWidgetId}-field-${item.name}`}
-            value={item.value}
+            value={item.value || ''}
             onChange={item.onChange}
           />
         </div>

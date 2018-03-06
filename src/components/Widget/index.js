@@ -47,10 +47,11 @@ class Widget extends Component {
       {
         name: 'title',
         label: 'Title',
-        value: this.state.title,
+        value: this.props.title,
         getWidgetId: `w-${id}`,
         onChange: evt => {
-          this.setState({
+          this.props.updateWidget(this.props.id, {
+            ...this.props,
             title: evt.target.value,
           });
         },
@@ -115,6 +116,7 @@ Widget.propTypes = {
   isActive: PropTypes.bool,
   isConfiguring: PropTypes.bool,
   onSettingsClick: PropTypes.func,
+  updateWidget: PropTypes.func,
   children: PropTypes.node,
 };
 

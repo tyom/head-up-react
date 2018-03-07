@@ -4,7 +4,7 @@ import GoSettings from 'react-icons/lib/go/settings';
 import classNames from 'classnames';
 import Settings from './Settings';
 
-import styles from './style.css';
+import './style.css';
 import * as widgets from '../widgets';
 
 const SettingsButton = ({ onClick }) => (
@@ -16,10 +16,7 @@ const SettingsButton = ({ onClick }) => (
 
 const Header = ({ title, onSettingsClick, showSettings }) => {
   function handleClick(evt) {
-    const isButton = Boolean(evt.target.closest(`.${styles['menuBtn']}`));
-    if (isButton) {
-      evt.stopPropagation();
-    }
+    evt.stopPropagation();
     onSettingsClick && onSettingsClick();
   }
 

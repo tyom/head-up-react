@@ -13,7 +13,6 @@ const Cell = props => {
   return (
     <div
       styleName="cell"
-      className={props.className}
       style={{
         width: dimensions[0],
         height: dimensions[1] || dimensions[0],
@@ -33,7 +32,6 @@ Cell.propTypes = {
   size: PropTypes.string,
   children: PropTypes.node,
   widget: PropTypes.object,
-  className: PropTypes.string,
 };
 
 export default Cell;

@@ -1,100 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Cell: structure activated settings 1`] = `
-<div
-  class="style_cell__3Ra6O style_is-configuring__1N8Wb"
-  style="width:25%;height:25%"
->
-  <article
-    class="style_container__1ANRY"
-  >
-    <header
-      class="style_header__3dpY1"
-    >
-      test
-    </header>
-    <div
-      class="style_inner__1FGTU"
-    >
-      <div
-        class="style_content__1ERGj"
-      />
-      <aside
-        class="style_settings__3Nr_n"
-      >
-        <fieldset>
-          <legend>
-            Settings
-          </legend>
-          <div
-            class="style_field__3T0xc"
-          >
-            <label
-              for="input"
-            >
-              Input
-            </label>
-            <input
-              id="input"
-              type="text"
-            />
-          </div>
-        </fieldset>
-      </aside>
-    </div>
-  </article>
-</div>
-`;
-
-exports[`Cell: structure active state 1`] = `
-<div
-  class="style_cell__3Ra6O style_is-active__2i7UK"
-  style="width:50%;height:50%"
-/>
-`;
-
-exports[`Cell: structure custom size 1`] = `
-<div
-  class="style_cell__3Ra6O"
-  style="width:25%;height:75%"
-/>
-`;
-
 exports[`Cell: structure default component 1`] = `
 <div
-  class="style_cell__3Ra6O"
-  style="width:25%;height:25%"
+  className="style_cell__3Ra6O"
+  style={
+    Object {
+      "height": "25%",
+      "width": "25%",
+    }
+  }
 />
 `;
 
-exports[`Cell: structure inner container class name 1`] = `
+exports[`Cell: structure has children 1`] = `
 <div
-  class="useful style_content__1ERGj"
+  className="style_cell__3Ra6O"
+  style={
+    Object {
+      "height": "50%",
+      "width": "50%",
+    }
+  }
 >
-  content
+  contents
 </div>
 `;
 
-exports[`Cell: structure with children 1`] = `
+exports[`Cell: structure has size 1`] = `
 <div
-  class="style_cell__3Ra6O"
-  style="width:50%;height:50%"
+  className="style_cell__3Ra6O"
+  style={
+    Object {
+      "height": "75%",
+      "width": "25%",
+    }
+  }
+/>
+`;
+
+exports[`Cell: structure has widget 1`] = `
+<div
+  className="style_cell__3Ra6O"
+  style={
+    Object {
+      "height": "50%",
+      "width": "50%",
+    }
+  }
 >
-  <article
-    class="style_container__1ANRY"
-  >
-    <header
-      class="style_header__3dpY1"
-    />
-    <div
-      class="style_inner__1FGTU"
-    >
-      <div
-        class="style_content__1ERGj"
-      >
-        contents
-      </div>
-    </div>
-  </article>
+  <Connect(Widget)
+    isActive={true}
+    title="my data"
+  />
 </div>
 `;

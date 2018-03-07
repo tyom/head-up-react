@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Widget: structure initialise widget 1`] = `
+<article
+  className="style_widget__1AHS9"
+>
+  <Header
+    onSettingsClick={[Function]}
+  />
+  <Body />
+  <Settings
+    settings={
+      Array [
+        Object {
+          "getWidgetId": "w-undefined",
+          "label": "Title",
+          "name": "title",
+          "onChange": [Function],
+          "value": undefined,
+        },
+      ]
+    }
+  />
+</article>
+`;
